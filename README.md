@@ -9,6 +9,9 @@ npm install @apollo/client graphql @apollo/react-hooks
 ```
 
 - local state
+- [ ] node.js 빠르게 HTTPS 적용시켜보기
+- [ ] React boilerplate 분석
+- [ ] apolloCache 관리 -> redux로 넘어가볼까...?
 
 ---
 

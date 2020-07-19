@@ -6,7 +6,7 @@ import Loader from "../components/Loader";
 import Post from "../components/Post";
 
 const FEED_QUERY = gql`
-  {
+  query SEE_FEED {
     seeFeed {
       id
       location
@@ -37,6 +37,7 @@ const FEED_QUERY = gql`
 
 export default () => {
   const { data, loading } = useQuery(FEED_QUERY);
+  console.log(data);
   return (
     <Wrapper>
       <Helmet>
