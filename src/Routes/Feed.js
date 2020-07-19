@@ -1,8 +1,7 @@
 import React from "react";
 import Helmet from "react-helmet";
 import styled from "styled-components";
-import { gql } from "apollo-boost";
-import { useQuery } from "react-apollo-hooks";
+import { useQuery, useMutation, gql } from "@apollo/client";
 import Loader from "../components/Loader";
 import Post from "../components/Post";
 
@@ -48,7 +47,7 @@ export default () => {
       {!loading &&
         data &&
         data.seeFeed &&
-        data.seeFeed.map(post => (
+        data.seeFeed.map((post) => (
           <Post
             key={post.id}
             id={post.id}

@@ -1,3 +1,17 @@
+# feature
+
+## docs read : apolloclient update
+
+- apolloclient update
+
+```
+npm install @apollo/client graphql @apollo/react-hooks
+```
+
+- local state
+
+---
+
 # 4 Frontend Setup
 
 # 4.0 CRA Cleanup and Installation (5:45)
@@ -92,7 +106,7 @@ export default () => {
 
 ```js
 ...
-import { gql } from "apollo-boost";
+import { gql } from "@apollo/client";
 import { useQuery } from "react-apollo-hooks";
 
 const QUERY = gql`
@@ -130,9 +144,9 @@ import "./styles.css";
 export default function App() {
   const [count, setCount] = useState(0);
   const [email, setEmail] = useState("");
-  const updateEmail = e => {
+  const updateEmail = (e) => {
     const {
-      target: { value }
+      target: { value },
     } = e;
     setEmail(value);
   };
@@ -214,7 +228,7 @@ pass
 - 1. 로그인 로직
 
 ```
-import { gql } from "apollo-boost";
+import { gql } from "@apollo/client";
 
 export const LOG_IN = gql`
   mutation requestSecret($email: String!) {
@@ -288,8 +302,8 @@ export const LOG_IN = gql`
 const { data, loading } = useQuery(SEARCH, {
   skip: term === undefined,
   variables: {
-    term
-  }
+    term,
+  },
 });
 ```
 

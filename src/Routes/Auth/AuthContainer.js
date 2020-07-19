@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import AuthPresenter from "./AuthPresenter";
 import useInput from "../../Hooks/useInput";
-import { useMutation } from "react-apollo-hooks";
+import { useQuery, useMutation, gql } from "@apollo/client";
 import {
   LOG_IN,
   CREATE_ACCOUNT,
   CONFIRM_SECRET,
-  LOCAL_LOG_IN
+  LOCAL_LOG_IN,
 } from "./AuthQueries";
 import { toast } from "react-toastify";
 
@@ -28,26 +28,26 @@ export default () => {
         setAction("confirm");
       }
     },
-    variables: { email: email.value }
+    variables: { email: email.value },
   });
   const [createAccountMutation] = useMutation(CREATE_ACCOUNT, {
     variables: {
       email: email.value,
       name: name.value,
       firstName: firstName.value,
-      lastName: lastName.value
-    }
+      lastName: lastName.value,
+    },
   });
   const [confirmSecretMutation] = useMutation(CONFIRM_SECRET, {
     variables: {
       email: email.value,
-      secret: secret.value
-    }
+      secret: secret.value,
+    },
   });
 
   const [localLogInMutation] = useMutation(LOCAL_LOG_IN);
 
-  const onSubmit = async e => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     if (action === "logIn") {
       if (email.value !== "") {
@@ -71,7 +71,7 @@ export default () => {
       ) {
         try {
           const {
-            data: { createAccount }
+            data: { createAccount },
           } = await createAccountMutation();
           if (!createAccount) {
             toast.success("Account Created! ");
@@ -89,7 +89,7 @@ export default () => {
       if (secret.value !== "") {
         try {
           const {
-            data: { confirmSecret: token }
+            data: { confirmSecret: token },
           } = await confirmSecretMutation();
           console.log(token);
           //TODO : log user in JWT
