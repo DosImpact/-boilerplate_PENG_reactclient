@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Link, withRouter } from "react-router-dom";
-import { useQuery, useMutation, gql } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 
 import Input from "./Input";
 import useInput from "../Hooks/useInput";
@@ -57,17 +57,15 @@ export default withRouter(HeaderComponent);
 
 const Header = styled.header`
   width: 100%;
-  border: 0;
+  height: 64px;
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 10;
   background-color: white;
-  border-bottom: ${(props) => props.theme.boxBorder};
-  border-radius: 0px;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 25px 0px;
 `;
 
 const HeaderWrapper = styled.div`

@@ -2,7 +2,6 @@ import React from "react";
 import GlobalStyles from "../Styles/GlobalStyles";
 import styled, { ThemeProvider } from "styled-components";
 import { HashRouter } from "react-router-dom";
-import { useQuery, gql } from "@apollo/client";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -12,11 +11,8 @@ import Routes from "./Routes";
 import Footer from "./Footer";
 import Header from "./Header";
 
-const QUERY = gql`
-  {
-    isLoggedIn @client
-  }
-`;
+import { useSelector } from "react-redux";
+
 const Wrapper = styled.div`
   margin: 0 auto;
   max-width: ${(props) => props.theme.maxWidth};
@@ -24,11 +20,8 @@ const Wrapper = styled.div`
 `;
 
 export default () => {
-  const {
-    data: { isLoggedIn },
-  } = useQuery(QUERY);
-
-  console.log("isLoggedIn", isLoggedIn);
+  const user = useSelector((state) => state.user);
+  const isLoggedIn = user.isLoggedIn;
 
   return (
     <ThemeProvider theme={Theme}>
@@ -37,7 +30,7 @@ export default () => {
         <HashRouter>
           <Wrapper>
             <>
-              {isLoggedIn && <Header />}
+              <Header />
               <Routes isLoggedIn={isLoggedIn} />
               <Footer />
             </>
