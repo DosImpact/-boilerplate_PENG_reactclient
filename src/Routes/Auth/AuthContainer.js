@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import AuthPresenter from "./AuthPresenter";
 import useInput from "../../Hooks/useInput";
-import { useQuery, useMutation, gql } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import {
   LOG_IN,
   CREATE_ACCOUNT,

@@ -15,6 +15,12 @@ use instead of:
 import { useQuery, useMutation, gql } from "@apollo/client";
 ```
 
+## tag redux install
+
+```
+yarn add redux react-redux redux-promise redux-thunk
+```
+
 # 4 Frontend Setup
 
 # 4.0 CRA Cleanup and Installation (5:45)

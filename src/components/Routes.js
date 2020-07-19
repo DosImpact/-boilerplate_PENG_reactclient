@@ -11,10 +11,10 @@ import Profile from "../Routes/Profile";
 const LoggedInRoutes = () => (
   <Switch>
     <Route exact path="/" component={Feed}></Route>
-    {/* <Route path="/explore" component={Explore} />
+    <Route path="/explore" component={Explore} />
     <Route path="/search" component={Search} />
     <Route path="/:username" component={Profile} />
-    <Redirect from="*" to="/" /> */}
+    <Redirect from="*" to="/" />
   </Switch>
 );
 

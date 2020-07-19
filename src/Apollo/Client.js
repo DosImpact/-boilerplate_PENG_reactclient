@@ -1,4 +1,4 @@
-import { ApolloProvider, gql } from "@apollo/client";
+import { gql } from "@apollo/client";
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 
 const cartItemsVar = ["SAMPLE ITEM"];
