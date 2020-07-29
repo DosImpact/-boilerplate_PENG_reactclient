@@ -26,6 +26,13 @@ const footerList = [
   { href: "#", text: "단체 신청" },
   { href: "#", text: "기업복지 신청" },
 ];
+
+const termsUsages = [
+  { href: "#", text: "이용약관" },
+  { href: "#", text: "개인정보 처리 방침" },
+  { href: "#", text: "위치기반 서비스 이용약관" },
+];
+
 function Footer() {
   return (
     <Container>
@@ -39,6 +46,7 @@ function Footer() {
             </div>
           ))}
         </div>
+
         <div className="footer__info">
           <div className="footer__info__column">
             <div className="title01">고객센터</div>
@@ -48,24 +56,27 @@ function Footer() {
               업무시간 : 평일 11:00 - 18:00 (점심: 13:00 - 14:00)
             </div>
           </div>
-          <hr className="title04" />
+
+          <hr className="title05" />
+
           <div className="footer__info__column">
             <div className="title01">Talent Trade</div>
             <div className="title04">
-              ㈜프렌트립|사업자 등록번호 : 261-81-04385
+              ㈜재능무역 {new Date().getFullYear()} &copy; | 사업자 등록번호 :
+              261-00-00000
             </div>
             <div className="title04">
-              통신판매업신고번호 : 2016-서울성동-01088
+              통신판매업신고번호 : 0000-서울성동-00000
             </div>
             <div className="title04">
-              대표 : 임수열 | 개인정보 관리 책임자 : 김종광
+              대표 : 김도영 | 개인정보 관리 책임자 : 김도영
             </div>
             <div className="title04">
               서울시 성동구 왕십리로 115 헤이그라운드 서울숲점 G601
             </div>
             <div className="title04">
-              ㈜프렌트립은 통신판매중개자로서 거래당사자가 아니며, 호스트가
-              등록한 상품정보 및 거래에 대해 ㈜프렌트립은 일체의 책임을 지지
+              ㈜재능무역은 통신판매중개자로서 거래당사자가 아니며, 호스트가
+              등록한 상품정보 및 거래에 대해 ㈜재능무역은 일체의 책임을 지지
               않습니다.
             </div>
             <div className="title04"></div>
@@ -75,11 +86,21 @@ function Footer() {
               확인
             </div>
           </div>
+          <div className="footer__usages">
+            {termsUsages.map((e, idx) => (
+              <div className="footer__usages__items title04" key={idx}>
+                <a href={e.href}>
+                  <span>{e.text}</span>
+                </a>
+              </div>
+            ))}
+          </div>
         </div>
+
         <div className="footer__links">
           <div className="icons__list">
             {iconList.map((e, idx) => (
-              <div className="icons__item" key={idx}>
+              <div className="icons__item " key={idx}>
                 <a href={e.href}>{e.icon()}</a>
               </div>
             ))}
@@ -103,15 +124,15 @@ const Wrapper = styled.div`
   margin: 0px auto;
   padding: 40px 20px;
 
-  & .title04 {
-    margin: 6px 0px;
-    font-size: 12px;
+  & .title01 {
+    padding: 15px 0px;
   }
   & .title03 {
     padding: 5px 0px;
   }
-  & .title01 {
-    padding: 15px 0px;
+  & .title04 {
+    margin: 6px 0px;
+    font-size: 12px;
   }
 
   & .footer__nav {
@@ -131,9 +152,20 @@ const Wrapper = styled.div`
     & .footer__info__column {
       padding: 30px 0px;
     }
+
+    & .footer__usages {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+
+      & .footer__usages__items {
+        margin-right: 20px;
+      }
+    }
   }
 
   & .footer__links {
+    padding: 30px 0px;
     & .icons__list {
       opacity: 0.6;
       font-size: 24px;

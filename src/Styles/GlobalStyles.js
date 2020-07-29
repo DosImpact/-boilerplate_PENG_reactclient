@@ -11,7 +11,7 @@ export default createGlobalStyle`
         background-color:${(props) => props.theme.bgColor};
         color: ${(props) => props.theme.blackColor};
         font-size:14px;
-        font-family: 'Nanum Gothic', sans-serif;
+        font-family: 'Noto Sans KR', sans-serif;
         padding-top: 140px;
     }
     a {
@@ -33,10 +33,16 @@ export default createGlobalStyle`
     .title03{
         font-size: 16px;
         font-weight:400;
+        letter-spacing: -1px;
     }
     .title04{
         font-size: 14px;
         font-weight:400;
         color: rgb(153, 153, 153);
+    }
+    .title05{
+        font-size: 14px;
+        font-weight:400;
+        opacity:0.4;
     }
 `;
