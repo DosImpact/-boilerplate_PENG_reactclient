@@ -8,16 +8,12 @@ import "react-toastify/dist/ReactToastify.css";
 
 import Theme from "../Styles/Theme";
 import Routes from "./Routes";
-import Footer from "./Footer";
+// import Footer from "./Footer";
 import Header from "./Header";
 
-import { useSelector } from "react-redux";
+import Footer from "./Footer/index";
 
-const Wrapper = styled.div`
-  margin: 0 auto;
-  max-width: ${(props) => props.theme.maxWidth};
-  width: 100%;
-`;
+import { useSelector } from "react-redux";
 
 export default () => {
   const user = useSelector((state) => state.user);
@@ -28,13 +24,11 @@ export default () => {
       <>
         <GlobalStyles />
         <HashRouter>
-          <Wrapper>
-            <>
-              <Header />
-              <Routes isLoggedIn={isLoggedIn} />
-              <Footer />
-            </>
-          </Wrapper>
+          <>
+            <Header />
+            <Routes isLoggedIn={isLoggedIn} />
+            <Footer />
+          </>
         </HashRouter>
         <ToastContainer position={toast.POSITION.BOTTOM_LEFT} />
       </>

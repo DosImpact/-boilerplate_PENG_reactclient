@@ -3,22 +3,40 @@ import reset from "styled-reset";
 
 export default createGlobalStyle`
     ${reset};
-    @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700');
+
     *{
         box-sizing: border-box;
     }
     body{
-        background-color:${props => props.theme.bgColor};
-        color: ${props => props.theme.blackColor};
+        background-color:${(props) => props.theme.bgColor};
+        color: ${(props) => props.theme.blackColor};
         font-size:14px;
-        font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        font-family: 'Nanum Gothic', sans-serif;
         padding-top: 140px;
     }
     a {
-        color:${props => props.theme.blueColor};
+        color:${(props) => props.theme.blackColor};
         text-decoration:none;
     }
     input:focus{
         outline:none;
+    }
+
+    .title01{
+        font-size: 18px;
+        font-weight:800;
+    }
+    .title02{
+        font-size: 16px;
+        font-weight:700;
+    }
+    .title03{
+        font-size: 16px;
+        font-weight:400;
+    }
+    .title04{
+        font-size: 14px;
+        font-weight:400;
+        color: rgb(153, 153, 153);
     }
 `;
