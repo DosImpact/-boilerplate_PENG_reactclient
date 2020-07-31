@@ -22,6 +22,14 @@ export default createGlobalStyle`
         outline:none;
     }
 
+    .box{
+        border:1px solid #e6e6e6;
+    }
+    .circleBox{
+        border:1px solid #e6e6e6;
+        border-radius:4px;
+    }
+
     .title01{
         font-size: 18px;
         font-weight:800;

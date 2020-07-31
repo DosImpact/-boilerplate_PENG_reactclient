@@ -1,11 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Link, withRouter } from "react-router-dom";
-import { useQuery, gql } from "@apollo/client";
 
-import { Compass, HeartEmpty, User, Logo, Plus } from "components/Icons";
+import Input from "components/Input";
+import {
+  FaThinkPeaks,
+  FaSearch,
+  FaRegCommentAlt,
+  FaRegSave,
+  FaRegUser,
+} from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import { logUserSave } from "_actions/log_actions";
+
 const LoggedInWrapper = styled.div`
   & .write__box {
     display: flex;
@@ -25,11 +32,6 @@ const LoggedIn = () => {
   return (
     <>
       <LoggedInWrapper>
-        <div className="write__box">
-          <Plus />
-          <div>글쓰기</div>
-        </div>
-
         <div>MY 무역</div>
       </LoggedInWrapper>
     </>
@@ -40,60 +42,71 @@ const LoggedOut = () => {
 };
 
 const HeaderComponent = ({ history }) => {
-  const user = useSelector((state) => state.user);
-  // const { data, loading, error } = useQuery(ME);
-  // console.log(data);
-  console.log("user", user);
-  // console.log("user Data", user);
-  // const search = useInput("");
-  // console.log("data", data);
-  // const onSearchSubmit = (e) => {
-  //   e.preventDefault();
-  //   history.push(`/search?term=${search.value}`);
-  // };
+  const dispatch = useDispatch();
+  const log = useSelector((state) => state.log.toJS());
+  const [userData, SetUserData] = useState("");
+
+  useEffect(async () => {
+    const { payload } = await dispatch(logUserSave(log?.token || ""));
+    SetUserData(payload);
+    console.log(payload);
+    return () => {};
+  }, []);
+
   return (
     <Header>
       <HeaderWrapper>
-        <div>
+        <div className="header__column">
           <Link to="/">
-            <Logo />
+            <div className="logo">
+              <FaThinkPeaks />
+              <span className="logo__title">재능무역</span>
+            </div>
           </Link>
         </div>
-        <div>
-          {user.isLoggedIn ? <LoggedIn /> : <LoggedOut />}
-          {/*           
-          <HeaderLink to="/explore">
-            <Compass />
-          </HeaderLink>
-          <HeaderLink to="/notifications">
-            <HeartEmpty />
-          </HeaderLink>
-          {!data ? (
-            <HeaderLink to="/#">
-              <User />
-            </HeaderLink>
-          ) : (
-            <HeaderLink to={data.me.name}>
-              <User />
-            </HeaderLink>
-          )} */}
+        <div className="header__column">
+          <div className="Search">
+            <div className="SearchContainer">
+              <div>
+                <FaSearch />
+              </div>
+              <form>
+                <input type="text"></input>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div className="header__column">
+          <div className="Nav">
+            <div className="NavContainer">
+              <ul className="icon__list">
+                <Link to="/">
+                  <li className="icon__item">
+                    <FaRegCommentAlt />
+                    <div className="icon__title title04">피드</div>
+                  </li>
+                </Link>
+                <Link to="/">
+                  <li className="icon__item">
+                    <FaRegSave />
+                    <div className="icon__title title04">저장</div>
+                  </li>
+                </Link>
+                <Link to="/">
+                  <li className="icon__item">
+                    <FaRegUser />
+                    <div className="icon__title title04">마이</div>
+                  </li>
+                </Link>
+              </ul>
+            </div>
+          </div>
         </div>
       </HeaderWrapper>
     </Header>
   );
 };
 export default withRouter(HeaderComponent);
-
-const ME = gql`
-  query whoami {
-    me {
-      id
-      avatar
-      name
-      email
-    }
-  }
-`;
 
 const Header = styled.header`
   width: 100%;
@@ -103,6 +116,8 @@ const Header = styled.header`
   left: 0;
   z-index: 10;
   background-color: white;
+  border-bottom: ${(props) => props.theme.boxBorder};
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -112,39 +127,63 @@ const HeaderWrapper = styled.div`
   width: 100%;
   max-width: ${(props) => props.theme.maxWidth};
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
   z-index: 2;
+
+  & .header__column {
+  }
+  & .header__column:first-child {
+    width: 168px;
+    margin-left: 10px;
+  }
+
+  & .header__column:nth-child(2) {
+    width: 100%;
+  }
+
+  & .header__column:last-child {
+    width: 168px;
+    margin-left: 10px;
+  }
+
+  & .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 32px;
+
+    & .logo__title {
+      font-size: 16px;
+      font-weight: 400;
+    }
+  }
+
+  & .Search {
+    & .SearchContainer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  & .Nav {
+    & .NavContainer {
+      & .icon__list {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      & .icon__item {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      & .icon__title {
+      }
+    }
+  }
 `;
-
-// const HeaderColumn = styled.div`
-//   width: 33%;
-//   text-align: center;
-//   &:first-child {
-//     margin-right: auto;
-//     text-align: left;
-//   }
-//   &:last-child {
-//     margin-left: auto;
-//     text-align: right;
-//   }
-// `;
-
-// const SearchInput = styled(Input)`
-//   background-color: ${(props) => props.theme.bgColor};
-//   padding: 5px;
-//   font-size: 14px;
-//   border-radius: 3px;
-//   height: auto;
-//   text-align: center;
-//   width: 70%;
-//   &::placeholder {
-//     opacity: 0.8;
-//     font-weight: 200;
-//   }
-// `;
-
-// const HeaderLink = styled(Link)`
-//   &:not(:last-child) {
-//     margin-right: 30px;
-//   }
-// `;

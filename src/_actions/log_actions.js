@@ -41,18 +41,14 @@ export const logUserSave = (token) => {
 
   const request = axios(config)
     .then(function (response) {
-      console.log(JSON.stringify(response.data));
+      return response.data.data.me;
     })
     .catch(function (error) {
       console.log(error);
     });
 
-  console.log("request", request);
-
   return {
     type: LOG_TYPES.LOG_USER_SAVE,
-    payload: {
-      data: "hello",
-    },
+    payload: request,
   };
 };

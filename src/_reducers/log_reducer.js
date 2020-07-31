@@ -21,7 +21,8 @@ export default (state = initState, action) => {
     case LOG_TYPES.LOG_OUT:
       return state.update("token", null).update("isLoggedIn", false);
     case LOG_TYPES.LOG_USER_SAVE:
-      return state;
+      console.log("log_reducer", action.payload);
+      return state.set("userDate", Map({ ...action.payload }));
     default:
       return state;
   }

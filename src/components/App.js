@@ -1,6 +1,6 @@
 import React from "react";
 import GlobalStyles from "../Styles/GlobalStyles";
-import styled, { ThemeProvider } from "styled-components";
+import { ThemeProvider } from "styled-components";
 import { HashRouter } from "react-router-dom";
 
 import { ToastContainer, toast } from "react-toastify";

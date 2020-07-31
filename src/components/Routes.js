@@ -7,13 +7,15 @@ import Auth from "../Routes/Auth";
 import Explore from "../Routes/Explore";
 import Search from "../Routes/Search";
 import Profile from "../Routes/Profile";
+import Test from "../Routes/Test";
 
 const LoggedInRoutes = () => (
   <Switch>
     <Route exact path="/" component={Feed}></Route>
-    <Route path="/explore" component={Explore} />
-    <Route path="/search" component={Search} />
-    <Route path="/:username" component={Profile} />
+    <Route exact path="/explore" component={Explore} />
+    <Route exact path="/search" component={Search} />
+    <Route exact path="/test" component={Test} />
+    <Route exact path="/:username" component={Profile} />
     <Redirect from="*" to="/" />
   </Switch>
 );
