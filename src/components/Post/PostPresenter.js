@@ -19,7 +19,7 @@ export default ({
   onKeyPress,
   comments,
   selfComments,
-  caption
+  caption,
 }) => (
   <Post>
     <Header>
@@ -32,7 +32,7 @@ export default ({
       </UserColumn>
     </Header>
     <Files>
-      {console.log(files)}
+      {/* {console.log(files)} */}
       {files &&
         files.map((file, index) => (
           <File key={file.id} src={file.url} showing={index === currentItem} />
@@ -53,13 +53,13 @@ export default ({
       </Caption>
       {comments && (
         <Comments>
-          {comments.map(comment => (
+          {comments.map((comment) => (
             <Comment key={comment.id}>
               <FatText text={comment.user.name} />
               {comment.text}
             </Comment>
           ))}
-          {selfComments.map(comment => (
+          {selfComments.map((comment) => (
             <Comment key={comment.id}>
               <FatText text={comment.user.name} />
               {comment.text}
@@ -79,7 +79,7 @@ export default ({
 );
 
 const Post = styled.div`
-  ${props => props.theme.whiteBox};
+  ${(props) => props.theme.whiteBox};
   width: 100%;
   max-width: 600px;
   margin-bottom: 25px;
@@ -120,10 +120,10 @@ const File = styled.div`
   height: 600px;
   position: absolute;
   top: 0;
-  background-image: url(${props => props.src});
+  background-image: url(${(props) => props.src});
   background-size: cover;
   background-position: center;
-  opacity: ${props => (props.showing ? 1 : 0)};
+  opacity: ${(props) => (props.showing ? 1 : 0)};
   transition: opacity 0.5s linear;
 `;
 
@@ -162,7 +162,7 @@ const Timestamp = styled.span`
   font-size: 12px;
   margin: 10px 0px;
   padding-bottom: 10px;
-  border-bottom: ${props => props.theme.lightGreyColor} 1px solid;
+  border-bottom: ${(props) => props.theme.lightGreyColor} 1px solid;
 `;
 
 const Comments = styled.ul`

@@ -4,8 +4,8 @@ import { Link, withRouter } from "react-router-dom";
 import { useQuery, gql } from "@apollo/client";
 
 import { Compass, HeartEmpty, User, Logo, Plus } from "components/Icons";
-import { useSelector } from "react-redux";
-
+import { useSelector, useDispatch } from "react-redux";
+import { logUserSave } from "_actions/log_actions";
 const LoggedInWrapper = styled.div`
   & .write__box {
     display: flex;
@@ -41,7 +41,9 @@ const LoggedOut = () => {
 
 const HeaderComponent = ({ history }) => {
   const user = useSelector((state) => state.user);
-  const { data, loading, error } = useQuery(ME);
+  // const { data, loading, error } = useQuery(ME);
+  // console.log(data);
+  console.log("user", user);
   // console.log("user Data", user);
   // const search = useInput("");
   // console.log("data", data);

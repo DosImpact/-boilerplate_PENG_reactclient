@@ -15,4 +15,5 @@ export const SAVE_SERVER = "save_user";
 export const LOG_TYPES = {
   LOG_IN: "log_in",
   LOG_OUT: "log_out",
+  LOG_USER_SAVE: "log_user_save",
 };

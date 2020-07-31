@@ -1,4 +1,7 @@
 import { LOG_TYPES } from "./types";
+import axios from "axios";
+
+const BASE_URL = "http://localhost:4000/";
 
 export const logIn = (token) => {
   return {
@@ -10,5 +13,46 @@ export const logIn = (token) => {
 export const logOut = () => {
   return {
     type: LOG_TYPES.LOG_OUT,
+  };
+};
+
+export const logUserSave = (token) => {
+  const data = JSON.stringify({
+    query: `query whoami{
+    me{
+      id
+      avatar
+      name
+      email
+    }
+  }`,
+    variables: {},
+  });
+
+  const config = {
+    method: "post",
+    url: BASE_URL,
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+    data: data,
+  };
+
+  const request = axios(config)
+    .then(function (response) {
+      console.log(JSON.stringify(response.data));
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+
+  console.log("request", request);
+
+  return {
+    type: LOG_TYPES.LOG_USER_SAVE,
+    payload: {
+      data: "hello",
+    },
   };
 };
