@@ -1,7 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import { useQuery, gql } from "@apollo/client";
 
 import Card from "components/Card/Card";
+import Loader from "components/Loader";
+
+const getAllPost = gql`
+  query getAllPost {
+    allPosts {
+      id
+      location
+      caption
+      youtalent
+      mytalent
+      user {
+        id
+        avatar
+        name
+      }
+    }
+  }
+`;
 
 const allPosts = [
   {
@@ -31,14 +50,22 @@ const allPosts = [
   },
 ];
 
-function Home() {
+function Home(props) {
+  const { data, loading, error } = useQuery(getAllPost);
+  if (error) {
+    props.history.push("/");
+  }
   return (
     <Container className="Home__outerContainer">
       <div className="Home__innerContainer">
         <div className="card__list">
-          {allPosts.map((e, idx) => {
-            return <Card className="card__item" key={idx} {...e} />;
-          })}
+          {loading && <Loader />}
+
+          {!loading &&
+            data.allPosts &&
+            data.allPosts.map((e, idx) => {
+              return <Card className="card__item" key={idx} {...e} />;
+            })}
         </div>
       </div>
     </Container>
