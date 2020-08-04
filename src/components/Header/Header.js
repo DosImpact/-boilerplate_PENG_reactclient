@@ -82,19 +82,19 @@ const HeaderComponent = ({ history }) => {
               <ul className="icon__list">
                 <Link to="/">
                   <li className="icon__item">
-                    <FaRegCommentAlt />
+                    <FaRegCommentAlt size={24} />
                     <div className="icon__title title04">피드</div>
                   </li>
                 </Link>
                 <Link to="/">
                   <li className="icon__item">
-                    <FaRegSave />
+                    <FaRegSave size={24} />
                     <div className="icon__title title04">저장</div>
                   </li>
                 </Link>
                 <Link to="/">
                   <li className="icon__item">
-                    <FaRegUser />
+                    <FaRegUser size={24} />
                     <div className="icon__title title04">마이</div>
                   </li>
                 </Link>
@@ -180,6 +180,8 @@ const HeaderWrapper = styled.div`
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        width: 48px;
+        height: 48px;
       }
 
       & .icon__title {
