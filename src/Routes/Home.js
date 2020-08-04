@@ -49,6 +49,7 @@ export default Home;
 
 const Container = styled.div`
   width: 100%;
+  margin-bottom: 100px;
   & .Home__innerContainer {
     width: 100%;
     max-width: 1050px;

@@ -59,19 +59,25 @@ const HeaderComponent = ({ history }) => {
         <div className="header__column">
           <Link to="/">
             <div className="logo">
-              <FaThinkPeaks />
-              <span className="logo__title">재능무역</span>
+              <FaThinkPeaks size={42} />
+              <span className="logo__title title01 blue">
+                재능
+                <br />
+                무역
+              </span>
             </div>
           </Link>
         </div>
         <div className="header__column">
           <div className="Search">
             <div className="SearchContainer">
-              <div>
-                <FaSearch />
-              </div>
+              <FaSearch className="SearchIcon" size={18} color="gray" />
               <form>
-                <input type="text"></input>
+                <input
+                  className="SearchInput"
+                  type="text"
+                  placeholder="재능 검색하기"
+                ></input>
               </form>
             </div>
           </div>
@@ -83,19 +89,19 @@ const HeaderComponent = ({ history }) => {
                 <Link to="/">
                   <li className="icon__item">
                     <FaRegCommentAlt size={24} />
-                    <div className="icon__title title04">피드</div>
+                    <div className="icon__title title03">피드</div>
                   </li>
                 </Link>
                 <Link to="/">
                   <li className="icon__item">
                     <FaRegSave size={24} />
-                    <div className="icon__title title04">저장</div>
+                    <div className="icon__title title03">저장</div>
                   </li>
                 </Link>
                 <Link to="/">
                   <li className="icon__item">
                     <FaRegUser size={24} />
-                    <div className="icon__title title04">마이</div>
+                    <div className="icon__title title03">마이</div>
                   </li>
                 </Link>
               </ul>
@@ -154,16 +160,32 @@ const HeaderWrapper = styled.div`
     font-size: 32px;
 
     & .logo__title {
-      font-size: 16px;
-      font-weight: 400;
+      margin-left: 10px;
+      width: auto;
     }
   }
 
   & .Search {
+    width: 100%;
+    display: flex;
+    justify-content: center;
     & .SearchContainer {
+      width: 80%;
+      height: 38px;
+      background-color: ${(props) => props.theme.bgColor};
+      border-radius: 19px;
       display: flex;
-      justify-content: center;
+      flex-direction: row;
+      justify-content: flex-start;
       align-items: center;
+    }
+
+    & .SearchIcon {
+      margin: 0px 10px;
+    }
+
+    & .SearchInput {
+      all: unset;
     }
   }
 

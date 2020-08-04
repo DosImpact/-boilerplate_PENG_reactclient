@@ -53,4 +53,8 @@ export default createGlobalStyle`
         font-weight:400;
         opacity:0.4;
     }
+
+    .blue{
+        color:#3C82FF;
+    }
 `;
