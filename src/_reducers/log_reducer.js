@@ -4,12 +4,14 @@ import { Map } from "immutable";
 const initState = Map({
   token: localStorage.getItem("token"),
   isLoggedIn: !!localStorage.getItem("token"),
-  userDate: Map({
-    id: "",
-    avatar: "",
-    name: "",
-    email: "",
-  }),
+  userDate: Map(
+    JSON.parse(localStorage.getItem("userData")) || {
+      id: "",
+      avatar: "",
+      name: "",
+      email: "",
+    }
+  ),
 });
 
 export default (state = initState, action) => {
@@ -19,9 +21,12 @@ export default (state = initState, action) => {
         .update("token", action.payload.token)
         .update("isLoggedIn", true);
     case LOG_TYPES.LOG_OUT:
-      return state.update("token", null).update("isLoggedIn", false);
+      return state
+        .update("token", null)
+        .update("isLoggedIn", false)
+        .update("userDate", null);
     case LOG_TYPES.LOG_USER_SAVE:
-      console.log("log_reducer", action.payload);
+      console.log("log_reducer LOG_USER_SAVE", action.payload);
       return state.set("userDate", Map({ ...action.payload }));
     default:
       return state;

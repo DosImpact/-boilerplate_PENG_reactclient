@@ -17,6 +17,10 @@ export const logOut = () => {
 };
 
 export const logUserSave = (token) => {
+  if (!token) {
+    return { type: null };
+  }
+
   const data = JSON.stringify({
     query: `query whoami{
     me{

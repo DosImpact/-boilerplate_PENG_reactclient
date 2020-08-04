@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { Link, withRouter } from "react-router-dom";
-
-import Input from "components/Input";
 import {
   FaThinkPeaks,
   FaSearch,
@@ -10,46 +8,16 @@ import {
   FaRegSave,
   FaRegUser,
 } from "react-icons/fa";
+
 import { useSelector, useDispatch } from "react-redux";
 import { logUserSave } from "_actions/log_actions";
 
-const LoggedInWrapper = styled.div`
-  & .write__box {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: ${(props) => props.theme.whiteColor};
-    background-color: ${(props) => props.theme.blueColor};
-
-    width: 105px;
-    height: 40px;
-    border-radius: 5px;
-    opacity: 1;
-  }
-`;
-
-const LoggedIn = () => {
-  return (
-    <>
-      <LoggedInWrapper>
-        <div>MY 무역</div>
-      </LoggedInWrapper>
-    </>
-  );
-};
-const LoggedOut = () => {
-  return <>loggedOut</>;
-};
-
-const HeaderComponent = ({ history }) => {
+const HeaderComponent = (props) => {
+  const user = useSelector((state) => state.log.toJS());
+  // console.log("header.js", user);
   const dispatch = useDispatch();
-  const log = useSelector((state) => state.log.toJS());
-  const [userData, SetUserData] = useState("");
-
-  useEffect(async () => {
-    const { payload } = await dispatch(logUserSave(log?.token || ""));
-    SetUserData(payload);
-    console.log(payload);
+  useEffect(() => {
+    dispatch(logUserSave(user?.token ?? null));
     return () => {};
   }, []);
 
@@ -86,7 +54,7 @@ const HeaderComponent = ({ history }) => {
           <div className="Nav">
             <div className="NavContainer">
               <ul className="icon__list">
-                <Link to="/">
+                <Link to="/feed">
                   <li className="icon__item">
                     <FaRegCommentAlt size={24} />
                     <div className="icon__title title03">피드</div>
@@ -98,7 +66,7 @@ const HeaderComponent = ({ history }) => {
                     <div className="icon__title title03">저장</div>
                   </li>
                 </Link>
-                <Link to="/">
+                <Link to={`/user/${user.userDate.email || "dummy"}`}>
                   <li className="icon__item">
                     <FaRegUser size={24} />
                     <div className="icon__title title03">마이</div>
@@ -131,7 +99,8 @@ const Header = styled.header`
 
 const HeaderWrapper = styled.div`
   width: 100%;
-  max-width: ${(props) => props.theme.maxWidth};
+  max-width: 768px;
+  margin: 0px auto;
   display: flex;
   justify-content: space-between;
   align-items: center;

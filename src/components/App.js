@@ -16,9 +16,9 @@ import Footer from "./Footer/index";
 import { useSelector } from "react-redux";
 
 export default () => {
-  const user = useSelector((state) => state.user);
+  const user = useSelector((state) => state.log.toJS());
   const isLoggedIn = user.isLoggedIn;
-
+  // console.log("App.js", user);
   return (
     <ThemeProvider theme={Theme}>
       <>

@@ -22,34 +22,6 @@ const getAllPost = gql`
   }
 `;
 
-const allPosts = [
-  {
-    id: "ckcpz292n9ptw0999xkd2ls5k",
-    location: "DosRoom",
-    caption: "Prisma World",
-    youtalent: "포토샵 디자인",
-    mytalent: "프로그래밍",
-    user: {
-      id: "ckcpvk8ki9clw0999hvz3tdgz",
-      avatar:
-        "https://specials-images.forbesimg.com/imageserve/1207763472/960x0.jpg?fit=scale",
-      name: "doyoung",
-    },
-  },
-  {
-    id: "ckcsp8f73fn3009997p2g84ua",
-    location: "The love",
-    caption: "World",
-    youtalent: "singing",
-    mytalent: "program",
-    user: {
-      id: "ckcsp2s4afmob0999vglwz7d9",
-      avatar: "https://t1.daumcdn.net/cfile/blog/2519975054BC831933",
-      name: "dosimpact",
-    },
-  },
-];
-
 function Home(props) {
   const { data, loading, error } = useQuery(getAllPost);
   if (error) {
@@ -99,3 +71,31 @@ const Container = styled.div`
 
   avator
 */
+
+// const allPosts = [
+//   {
+//     id: "ckcpz292n9ptw0999xkd2ls5k",
+//     location: "DosRoom",
+//     caption: "Prisma World",
+//     youtalent: "포토샵 디자인",
+//     mytalent: "프로그래밍",
+//     user: {
+//       id: "ckcpvk8ki9clw0999hvz3tdgz",
+//       avatar:
+//         "https://specials-images.forbesimg.com/imageserve/1207763472/960x0.jpg?fit=scale",
+//       name: "doyoung",
+//     },
+//   },
+//   {
+//     id: "ckcsp8f73fn3009997p2g84ua",
+//     location: "The love",
+//     caption: "World",
+//     youtalent: "singing",
+//     mytalent: "program",
+//     user: {
+//       id: "ckcsp2s4afmob0999vglwz7d9",
+//       avatar: "https://t1.daumcdn.net/cfile/blog/2519975054BC831933",
+//       name: "dosimpact",
+//     },
+//   },
+// ];
