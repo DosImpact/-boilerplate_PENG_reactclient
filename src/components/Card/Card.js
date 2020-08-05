@@ -38,10 +38,11 @@ function Card({ className, ...props }) {
 const Container = styled.div`
   width: 500px;
   height: 400px;
-  background-color: ${(props) => props.theme.whiteColor};
+  /* background-color: ${(props) => props.theme.lightGreyColor}; */
   border-radius: 6px;
   padding: 30px;
-
+  border:${(props) => props.theme.boxBorder}
+  
   & .card__wrapper {
     width: 100%;
     height: 100%;
