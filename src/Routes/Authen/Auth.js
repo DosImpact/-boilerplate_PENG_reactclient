@@ -41,14 +41,14 @@ function Auth() {
                 <form className="auth__loginFrom">
                   <Input
                     {...email}
-                    className="auth__loginInput title01"
+                    className="auth__loginInput "
                     placeholder="이메일을 입력해주세요."
                   ></Input>
                   <Button className="auth__loginButton blueBG" type="submit">
                     <span className="title01">로그인</span>
                   </Button>
                 </form>
-                <div>
+                <div className="auth__loginSNS">
                   <Button className="auth__loginButton " type="submit">
                     <FaGoogle style={{ marginRight: 10, fontSize: 18 }} />
                     <span className="title01 black">구글로 로그인</span>
@@ -59,7 +59,7 @@ function Auth() {
                   </Button>
                   <Button className="auth__loginButton kakaoBG" type="submit">
                     <FaKaggle style={{ marginRight: 10, fontSize: 18 }} />
-                    <span className="title01">카카오 계정 로그인</span>
+                    <span className="title01 black">카카오 계정 로그인</span>
                   </Button>
                 </div>
               </div>
@@ -70,10 +70,10 @@ function Auth() {
                 <form className="auth__loginFrom">
                   <Input
                     {...secret}
-                    className="auth__loginInput title01"
+                    className="auth__loginInput "
                     placeholder="이메일을 확인해 주세요."
                   ></Input>
-                  <Button className="auth__loginButton " type="submit">
+                  <Button className="auth__loginButton blueBG" type="submit">
                     <span className="title01">인증 하기</span>
                   </Button>
                 </form>
@@ -85,30 +85,30 @@ function Auth() {
                 <form className="auth__loginFrom">
                   <Input
                     {...name}
-                    className="auth__loginInput title01"
+                    className="auth__loginInput "
                     placeholder="이름"
                   ></Input>
                   <Input
                     {...email}
-                    className="auth__loginInput title01"
+                    className="auth__loginInput "
                     placeholder="이메일"
                   ></Input>
                   <Input
                     {...firstName}
-                    className="auth__loginInput title01"
+                    className="auth__loginInput "
                     placeholder="성"
                   ></Input>
                   <Input
                     {...lastName}
-                    className="auth__loginInput title01"
+                    className="auth__loginInput "
                     placeholder="이름"
                   ></Input>
                   <Input
                     {...bio}
-                    className="auth__loginInput title01"
+                    className="auth__loginInput "
                     placeholder="성별"
                   ></Input>
-                  <Button className="auth__loginButton " type="submit">
+                  <Button className="auth__loginButton blueBG" type="submit">
                     <span className="title01">가입 하기</span>
                   </Button>
                 </form>
@@ -221,6 +221,10 @@ const AuthContainer = styled.div`
     & .auth__loginFrom {
       margin-top: 20px;
       width: 100%;
+    }
+
+    & .auth__loginSNS {
+      margin-top: 50px;
     }
 
     & .auth__loginInput {
