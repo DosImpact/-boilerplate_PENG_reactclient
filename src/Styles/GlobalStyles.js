@@ -8,7 +8,7 @@ export default createGlobalStyle`
         box-sizing: border-box;
     }
     body{
-        background-color:${(props) => props.theme.bgColor};
+        background-color: ${(props) => props.theme.whiteColor};
         color: ${(props) => props.theme.blackColor};
         font-size:14px;
         font-family: 'Noto Sans KR', sans-serif;
@@ -54,7 +54,32 @@ export default createGlobalStyle`
         opacity:0.4;
     }
 
+    .black{
+        color:#262626;
+    }
     .blue{
         color:#3C82FF;
+    }
+    .white{
+        color:#FFFFFF;
+    }
+    .grey{
+        color:#FAFAFA;
+    }
+
+    .blueBG{
+        background-color:#3C82FF;
+    }
+    .whiteBG{
+        background-color:#FFFFFF;
+    }
+    .greyBG{
+        background-color:#FAFAFA;
+    }
+    .facebookBG{
+        background-color:#4267B2;
+    }
+    .kakaoBG{
+        background-color:#FFDE00;
     }
 `;

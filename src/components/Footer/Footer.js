@@ -114,7 +114,7 @@ function Footer() {
 export default Footer;
 
 const Container = styled.footer`
-  background-color: ${(props) => props.theme.whiteColor};
+  background-color: ${(props) => props.theme.bgColor};
   width: 100%;
 `;
 
