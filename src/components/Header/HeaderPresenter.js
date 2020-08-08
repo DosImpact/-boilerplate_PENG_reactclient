@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
-import { Link, withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
   FaThinkPeaks,
   FaSearch,
@@ -9,18 +9,7 @@ import {
   FaRegUser,
 } from "react-icons/fa";
 
-import { useSelector, useDispatch } from "react-redux";
-import { logUserSave } from "_actions/log_actions";
-
-const HeaderComponent = (props) => {
-  const user = useSelector((state) => state.log.toJS());
-  // console.log("header.js", user);
-  // const dispatch = useDispatch();
-  // useEffect(() => {
-  //   dispatch(logUserSave(user?.token ?? null));
-  //   return () => {};
-  // }, []);
-
+const HeaderPresneter = ({ user, ...props }) => {
   return (
     <Header>
       <HeaderWrapper>
@@ -69,7 +58,9 @@ const HeaderComponent = (props) => {
                 <Link to={`/user/${user.userDate.email || "dummy"}`}>
                   <li className="icon__item">
                     <FaRegUser size={24} />
-                    <div className="icon__title title04">마이</div>
+                    <div className="icon__title title04">
+                      {user.isLoggedIn ? "마이" : "로그인"}
+                    </div>
                   </li>
                 </Link>
               </ul>
@@ -80,7 +71,7 @@ const HeaderComponent = (props) => {
     </Header>
   );
 };
-export default withRouter(HeaderComponent);
+export default HeaderPresneter;
 
 const Header = styled.header`
   width: 100%;

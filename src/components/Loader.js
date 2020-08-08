@@ -1,6 +1,6 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
-import { Logo } from "./Icons";
+import { FaThinkPeaks } from "react-icons/fa";
 
 const Animation = keyframes`
     0%{
@@ -22,6 +22,6 @@ const Loader = styled.div`
 
 export default () => (
   <Loader>
-    <Logo size={36} />
+    <FaThinkPeaks size={52} />
   </Loader>
 );

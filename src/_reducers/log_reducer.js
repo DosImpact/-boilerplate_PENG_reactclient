@@ -17,8 +17,10 @@ const initState = Map({
 export default (state = initState, action) => {
   switch (action.type) {
     case LOG_TYPES.LOG_IN:
+      localStorage.setItem("token", action.payload.token);
       return state.set("token", action.payload.token).set("isLoggedIn", true);
     case LOG_TYPES.LOG_OUT:
+      localStorage.removeItem("token");
       return state
         .set("token", null)
         .set("isLoggedIn", false)

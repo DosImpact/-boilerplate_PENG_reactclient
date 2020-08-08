@@ -5,7 +5,10 @@ import { toast } from "react-toastify";
 
 import { CONFIRM_SECRET, CREATE_ACCOUNT, REQUEST_SECRET } from "./AuthGQL";
 import { useDispatch } from "react-redux";
-import { logIn as actionLogin } from "_actions/log_actions";
+import {
+  logIn as actionLogin,
+  logUserSave as acionLogUserSave,
+} from "_actions/log_actions";
 
 import AuthPresenter from "./AuthPresenter";
 
@@ -60,6 +63,7 @@ function Auth(props) {
         },
       });
       dispatch(actionLogin(confirmSecretResult));
+      dispatch(acionLogUserSave(confirmSecretResult));
       toast.success("로그인 성공 환영합니다!");
       props.history.push("/");
     } catch (error) {

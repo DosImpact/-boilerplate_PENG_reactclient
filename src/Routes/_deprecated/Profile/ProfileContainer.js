@@ -40,7 +40,6 @@ export default withRouter(
       params: { username },
     },
   }) => {
-    console.log(username);
     const { data, loading } = useQuery(GET_USER, {
       variables: { name: username },
     });
