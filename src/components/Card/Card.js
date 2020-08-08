@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
 
 import Avatar from "components/Avatar";
-import Button from "components/Button";
 
 function Card({ className, ...props }) {
   const { id, location, caption, mytalent, youtalent, user } = props;

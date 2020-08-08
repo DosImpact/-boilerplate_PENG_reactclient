@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Route, Switch, Redirect } from "react-router-dom";
 import Feed from "../Routes/Feed";
-import Auth from "../Routes/Authen/Auth";
+import Auth from "Routes/Authen/AuthContainer";
 
 import Explore from "../Routes/Explore";
 import Search from "../Routes/Search";
