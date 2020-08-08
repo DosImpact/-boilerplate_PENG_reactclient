@@ -3,29 +3,76 @@ import { FaFacebook, FaGoogle, FaKaggle } from "react-icons/fa";
 
 import Button from "components/Button";
 import Input from "components/Input";
-import { gql, useMutation, useQuery } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import styled from "styled-components";
 import useInput from "Hooks/useInput";
+import { toast } from "react-toastify";
 
-function Auth() {
+import { CONFIRM_SECRET, CREATE_ACCOUNT, REQUEST_SECRET } from "./AuthGQL";
+import { useDispatch } from "react-redux";
+import { logIn as actionLogin } from "_actions/log_actions";
+
+function Auth(props) {
+  const dispatch = useDispatch();
   const actionType = { login: "login", signUp: "signUp", confirm: "confirm" };
   const [action, setAction] = useState(actionType.login);
 
   const name = useInput("");
-  const email = useInput("");
+  const email = useInput("ypd03008@gmail.com");
   const firstName = useInput("");
   const lastName = useInput("");
   const bio = useInput("");
   const secret = useInput("");
 
-  const handleLoginToConfirm = (e) => {
+  const [requestSecret] = useMutation(REQUEST_SECRET);
+  const [confirmSecret] = useMutation(CONFIRM_SECRET);
+  const [createAccount] = useMutation(CREATE_ACCOUNT);
+
+  // 로그인 - 이메일 입력 - requestsecret - confirmsercret
+  const handleLoginToConfirm = async (e) => {
     e.preventDefault();
+    // toast.success("handleLoginToConfirm");
+    if (email.value === "") {
+      toast.error("이메일을 입력해 주세요.");
+      return;
+    }
+    try {
+      await requestSecret({
+        variables: {
+          email: email.value.trim(),
+        },
+      });
+      // console.log("result handleLoginToConfirm", data.requestSecret);
+      toast.success("이메일의 인증번호를 입력해 주세요.");
+      setAction(actionType.confirm);
+    } catch (error) {
+      toast.error("해당 이메일이 없습니다.");
+    }
   };
 
-  const handleConfirmToHome = (e) => {
+  //signUP
+  const handleConfirmToHome = async (e) => {
     e.preventDefault();
+    // toast.success("handleConfirmToHome");
+    try {
+      const {
+        data: { confirmSecret: confirmSecretResult },
+      } = await confirmSecret({
+        variables: {
+          secret: secret.value.trim(),
+          email: email.value.trim(),
+        },
+      });
+      console.log("confirmSecretResult", confirmSecretResult);
+      dispatch(actionLogin(confirmSecretResult));
+      toast.success("로그인 성공 환영합니다!");
+      props.history.push("/");
+    } catch (error) {
+      console.log(error);
+      toast.error("로그인 비밀번호를 다시 확인해 주세요.");
+    }
   };
-
+  //confirm
   const handleTosignUp = (e) => {
     e.preventDefault();
   };
@@ -38,7 +85,10 @@ function Auth() {
             {action === actionType.login && (
               <div className="authWrapper">
                 <div className="auth__login title01">로그인</div>
-                <form className="auth__loginFrom">
+                <form
+                  className="auth__loginFrom"
+                  onSubmit={handleLoginToConfirm}
+                >
                   <Input
                     {...email}
                     className="auth__loginInput "
@@ -49,9 +99,9 @@ function Auth() {
                   </Button>
                 </form>
                 <div className="auth__loginSNS">
-                  <Button className="auth__loginButton " type="submit">
+                  <Button className="auth__loginButton googleBG" type="submit">
                     <FaGoogle style={{ marginRight: 10, fontSize: 18 }} />
-                    <span className="title01 black">구글로 로그인</span>
+                    <span className="title01 ">구글로 로그인</span>
                   </Button>
                   <Button className="auth__loginButton facebookBG">
                     <FaFacebook style={{ marginRight: 10, fontSize: 18 }} />
@@ -67,7 +117,10 @@ function Auth() {
             {action === actionType.confirm && (
               <div>
                 <div className="auth__login title01">이메일 인증</div>
-                <form className="auth__loginFrom">
+                <form
+                  className="auth__loginFrom"
+                  onSubmit={handleConfirmToHome}
+                >
                   <Input
                     {...secret}
                     className="auth__loginInput "
@@ -178,24 +231,6 @@ function Auth() {
 }
 
 export default Auth;
-
-const CREATE_ACOUNTER = gql`
-  mutation createUser(
-    $name: String!
-    $email: String!
-    $firstName: String
-    $lastName: String
-    $bio: String
-  ) {
-    createAccount(
-      name: $name
-      email: $email
-      firstName: $firstName
-      lastName: $lastName
-      bio: $bio
-    )
-  }
-`;
 
 const AuthContainer = styled.div`
   width: 100%;

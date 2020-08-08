@@ -15,11 +15,11 @@ import { logUserSave } from "_actions/log_actions";
 const HeaderComponent = (props) => {
   const user = useSelector((state) => state.log.toJS());
   // console.log("header.js", user);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(logUserSave(user?.token ?? null));
-    return () => {};
-  }, []);
+  // const dispatch = useDispatch();
+  // useEffect(() => {
+  //   dispatch(logUserSave(user?.token ?? null));
+  //   return () => {};
+  // }, []);
 
   return (
     <Header>
@@ -57,19 +57,19 @@ const HeaderComponent = (props) => {
                 <Link to="/feed">
                   <li className="icon__item">
                     <FaRegCommentAlt size={24} />
-                    <div className="icon__title title03">피드</div>
+                    <div className="icon__title title04">피드</div>
                   </li>
                 </Link>
                 <Link to="/">
                   <li className="icon__item">
                     <FaRegSave size={24} />
-                    <div className="icon__title title03">저장</div>
+                    <div className="icon__title title04">저장</div>
                   </li>
                 </Link>
                 <Link to={`/user/${user.userDate.email || "dummy"}`}>
                   <li className="icon__item">
                     <FaRegUser size={24} />
-                    <div className="icon__title title03">마이</div>
+                    <div className="icon__title title04">마이</div>
                   </li>
                 </Link>
               </ul>
@@ -176,6 +176,9 @@ const HeaderWrapper = styled.div`
       }
 
       & .icon__title {
+        margin-top: 3px;
+        font-size: 10px;
+        color: ${(props) => props.theme.blackColor};
       }
     }
   }

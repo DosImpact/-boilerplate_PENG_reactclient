@@ -17,14 +17,12 @@ const initState = Map({
 export default (state = initState, action) => {
   switch (action.type) {
     case LOG_TYPES.LOG_IN:
-      return state
-        .update("token", action.payload.token)
-        .update("isLoggedIn", true);
+      return state.set("token", action.payload.token).set("isLoggedIn", true);
     case LOG_TYPES.LOG_OUT:
       return state
-        .update("token", null)
-        .update("isLoggedIn", false)
-        .update("userDate", null);
+        .set("token", null)
+        .set("isLoggedIn", false)
+        .set("userDate", null);
     case LOG_TYPES.LOG_USER_SAVE:
       console.log("log_reducer LOG_USER_SAVE", action.payload);
       return state.set("userDate", Map({ ...action.payload }));

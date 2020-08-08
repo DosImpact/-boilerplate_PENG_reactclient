@@ -82,4 +82,7 @@ export default createGlobalStyle`
     .kakaoBG{
         background-color:#FFDE00;
     }
+    .googleBG{
+        background-color:#E64B3C;
+    }
 `;

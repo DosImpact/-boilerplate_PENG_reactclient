@@ -4,6 +4,7 @@ import axios from "axios";
 const BASE_URL = "http://localhost:4000/";
 
 export const logIn = (token) => {
+  console.log("redux action login token:", token);
   return {
     type: LOG_TYPES.LOG_IN,
     payload: { token },

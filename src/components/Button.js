@@ -22,7 +22,7 @@ const Button = ({ className, text, onClick, children, color }) => (
 );
 
 Button.propTypes = {
-  text: PropTypes.string.isRequired,
+  text: PropTypes.string,
 };
 
 export default Button;

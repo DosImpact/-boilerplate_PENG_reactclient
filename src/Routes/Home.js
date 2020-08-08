@@ -32,7 +32,6 @@ function Home(props) {
       <div className="Home__innerContainer">
         <div className="card__list">
           {loading && <Loader />}
-
           {!loading &&
             data.allPosts &&
             data.allPosts.map((e, idx) => {
@@ -59,6 +58,7 @@ const Container = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
   }
 
   & .card__item {
