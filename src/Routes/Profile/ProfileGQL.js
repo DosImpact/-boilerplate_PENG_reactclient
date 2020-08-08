@@ -1,36 +1,49 @@
 import { gql } from "@apollo/client";
 /**
- * @CREATE_ACCOUNT - 회원 가입 화면 > 로그인 화면
- * @REQUEST_SECRET - 로그인 화면
- * @CONFIRM_SECRET - 인증 화면 -> push("/")
+ * @EDIT_USER
+ * @GET_USER
  */
 
-export const CREATE_ACCOUNT = gql`
-  mutation createUser(
-    $name: String!
-    $email: String!
+export const EDIT_USER = gql`
+  mutation editUser(
+    $name: String
+    $email: String
     $firstName: String
     $lastName: String
     $bio: String
+    $avatar: String
   ) {
-    createAccount(
+    editUser(
       name: $name
       email: $email
       firstName: $firstName
       lastName: $lastName
       bio: $bio
+      avatar: $avatar
     )
   }
 `;
-
-export const REQUEST_SECRET = gql`
-  mutation requestSecret($email: String!) {
-    requestSecret(email: $email)
-  }
-`;
-
-export const CONFIRM_SECRET = gql`
-  mutation confirmSecret($secret: String!, $email: String!) {
-    confirmSecret(secret: $secret, email: $email)
+export const GET_USER = gql`
+  query seeUser($name: String!) {
+    seeUser(name: $name) {
+      id
+      avatar
+      name
+      fullName
+      isFollowing
+      isSelf
+      bio
+      followingCount
+      followersCount
+      postsCount
+      posts {
+        id
+        files {
+          url
+        }
+        likeCount
+        commentCount
+      }
+    }
   }
 `;

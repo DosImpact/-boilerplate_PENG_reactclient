@@ -12,7 +12,7 @@ export default createGlobalStyle`
         color: ${(props) => props.theme.blackColor};
         font-size:14px;
         font-family: 'Noto Sans KR', sans-serif;
-        padding-top: 140px;
+        padding-top: 100px;
     }
     a {
         color:${(props) => props.theme.blackColor};

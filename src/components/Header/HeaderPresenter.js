@@ -55,7 +55,7 @@ const HeaderPresneter = ({ user, ...props }) => {
                     <div className="icon__title title04">저장</div>
                   </li>
                 </Link>
-                <Link to={`/user/${user.userDate.email || "dummy"}`}>
+                <Link to={`/user/${user.userDate.name || "dummy"}`}>
                   <li className="icon__item">
                     <FaRegUser size={24} />
                     <div className="icon__title title04">

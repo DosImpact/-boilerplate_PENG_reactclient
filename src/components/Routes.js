@@ -7,6 +7,7 @@ import Auth from "Routes/Authen/AuthContainer";
 import Explore from "../Routes/Explore";
 import Search from "../Routes/Search";
 import Profile from "../Routes/Profile";
+import { Channel, Saved, Tagged } from "Routes/Profile/index";
 import Test from "../Routes/Test";
 import Home from "../Routes/Home";
 
@@ -25,7 +26,7 @@ const LoggedInRoutes = () => (
     <Route exact path="/explore" component={auth(Explore, true)} />
     <Route exact path="/search" component={auth(Search, null)} />
     <Route exact path="/test" component={auth(Test, null)} />
-    <Route exact path="/user/:username" component={auth(Profile, true)} />
+    <Route path="/user/:name" component={auth(Profile, true)} />
     <Redirect from="*" to="/" />
   </Switch>
 );
