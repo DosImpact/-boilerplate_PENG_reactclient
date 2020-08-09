@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { useQuery, gql } from "@apollo/client";
 
@@ -24,6 +24,7 @@ const getAllPost = gql`
 
 function Home(props) {
   const { data, loading, error } = useQuery(getAllPost);
+  console.log(data, loading, error);
   if (error) {
     props.history.push("/");
   }
@@ -33,7 +34,8 @@ function Home(props) {
         <div className="card__list">
           {loading && <Loader />}
           {!loading &&
-            data.allPosts &&
+            data &&
+            data?.allPosts &&
             data.allPosts.map((e, idx) => {
               return <Card className="card__item" key={idx} {...e} />;
             })}

@@ -36,6 +36,7 @@ export const GET_USER = gql`
       followingCount
       followersCount
       postsCount
+      email
       posts {
         id
         files {

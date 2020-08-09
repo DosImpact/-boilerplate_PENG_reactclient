@@ -1,16 +1,10 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
 import { useRouteMatch } from "react-router-dom";
-import { useQuery, useMutation, gql } from "@apollo/client";
+import { useQuery } from "@apollo/client";
+import { useDispatch } from "react-redux";
+
 import ProfilePresenter from "./ProfilePresenter";
-
 import { GET_USER, EDIT_USER } from "./ProfileGQL";
-
-export const LOG_OUT = gql`
-  mutation logUserOut {
-    logUserOut @client
-  }
-`;
 
 export default () => {
   let {
@@ -20,16 +14,19 @@ export default () => {
   // console.log("useRouteMatchData", useRouteMatchData);
 
   // console.log(username);
-  const { data, loading } = useQuery(GET_USER, {
+  const { data, loading, error } = useQuery(GET_USER, {
     variables: { name },
   });
-  const logOut = useMutation(LOG_OUT);
+  const logOut = () => {
+    console.log("LogOut");
+  };
   return (
     <ProfilePresenter
       loading={loading}
       logOut={logOut}
       data={data}
       path={path}
+      error={error}
     />
   );
 };

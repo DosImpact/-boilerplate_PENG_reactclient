@@ -2,7 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import Helmet from "react-helmet";
 import { Route, Switch, Link } from "react-router-dom";
+import { FaTh, FaBookmark, FaComments } from "react-icons/fa";
 
+import { Error as ErrorComponent } from "components";
 import Loader from "../../components/Loader";
 import Avatar from "../../components/Avatar";
 import FatText from "../../components/FatText";
@@ -10,19 +12,22 @@ import FollowButton from "../../components/FollowButton";
 import SquarePost from "../../components/SquarePost";
 import Button from "../../components/Button";
 
-export default ({ loading, data, logOut, path }) => {
+export default ({ loading, data, logOut, path, error }) => {
   if (loading === true) {
     return (
       <OuterWrapper>
         <Loader />
       </OuterWrapper>
     );
+  } else if (!loading && error) {
+    return <ErrorComponent />;
   } else if (!loading && data && data.seeUser) {
     const {
       seeUser: {
         id,
         avatar,
         name,
+        email,
         fullName,
         isFollowing,
         isSelf,
@@ -45,30 +50,30 @@ export default ({ loading, data, logOut, path }) => {
               <Avatar size="lg" url={avatar} />
             </div>
             <div className="header__column">
-              <UsernameRow>
-                <Username>{name}</Username>{" "}
-                {isSelf ? (
-                  <Button onClick={(e) => logOut} text="Log Out" />
-                ) : (
-                  <FollowButton isFollowing={isFollowing} id={id} />
-                )}
+              <UsernameRow className="user__info">
+                <Username className="user__infoColumn">{name}</Username>
+                <div className="user__infoColumn">
+                  {isSelf ? (
+                    <Button onClick={(e) => logOut} text="Log Out" />
+                  ) : (
+                    <FollowButton isFollowing={isFollowing} id={id} />
+                  )}
+                </div>
               </UsernameRow>
-              <Counts>
-                <Count>
-                  <FatText text={String(postsCount)} /> posts
+              <Counts className="counts__list">
+                <Count className="counts__item">
+                  게시물 <FatText text={String(postsCount)} />
                 </Count>
-                <Count>
-                  <FatText text={String(followersCount)} /> followers
+                <Count className="counts__item">
+                  필로워 <FatText text={String(followersCount)} />
                 </Count>
-                <Count>
-                  <FatText text={String(followingCount)} /> following
+                <Count className="counts__item">
+                  팔로우 <FatText text={String(followingCount)} />
                 </Count>
               </Counts>
-              <FullName text={fullName} />
-              <Bio>{bio}</Bio>
+              <div>{email}</div>
             </div>
           </Header>
-
           {/* <Posts>
           {posts &&
             posts.map((post) => (
@@ -80,45 +85,8 @@ export default ({ loading, data, logOut, path }) => {
               />
             ))}
         </Posts> */}
-
-          <Selector>
-            <div className="selector__item">
-              <Link to={`/user/${name}`}>
-                <div className="selector__container">
-                  <div className="icon">🎆</div>
-                  <div className="title">게시물</div>
-                </div>
-              </Link>
-            </div>
-            <div className="selector__item">
-              <Link to={`/user/${name}/saved`}>
-                <div className="selector__container">
-                  <div className="icon">🎆</div>
-                  <div className="title">게시물</div>
-                </div>
-              </Link>
-            </div>
-            <div className="selector__item">
-              <Link to={`/user/${name}/tagged`}>
-                <div className="selector__container">
-                  <div className="icon">🎆</div>
-                  <div className="title">게시물</div>
-                </div>
-              </Link>
-            </div>
-          </Selector>
-
-          <Switch>
-            <Route exact path={`${path}`}>
-              <h1>hello</h1>
-            </Route>
-            <Route exact path={`${path}/saved`}>
-              <h1>saved</h1>
-            </Route>
-            <Route exact path={`${path}/tagged`}>
-              <h1>tagged</h1>
-            </Route>
-          </Switch>
+          <Select name={name} />
+          <Router path={path} />
         </InnerWrapper>
       </OuterWrapper>
     );
@@ -126,6 +94,52 @@ export default ({ loading, data, logOut, path }) => {
   return null;
 };
 
+const Router = ({ path }) => {
+  return (
+    <Switch>
+      <Route exact path={`${path}`}>
+        <h1>hello</h1>
+      </Route>
+      <Route exact path={`${path}/saved`}>
+        <h1>saved</h1>
+      </Route>
+      <Route exact path={`${path}/tagged`}>
+        <h1>tagged</h1>
+      </Route>
+    </Switch>
+  );
+};
+
+const Select = ({ name }) => {
+  return (
+    <Selector>
+      <div className="selector__item">
+        <Link to={`/user/${name}`}>
+          <div className="selector__container">
+            <FaTh className="icon" size={16} />
+            <div className="title">게시물</div>
+          </div>
+        </Link>
+      </div>
+      <div className="selector__item">
+        <Link to={`/user/${name}/saved`}>
+          <div className="selector__container">
+            <FaBookmark className="icon" size={16} />
+            <div className="title">저장됨</div>
+          </div>
+        </Link>
+      </div>
+      <div className="selector__item">
+        <Link to={`/user/${name}/tagged`}>
+          <div className="selector__container">
+            <FaComments className="icon" size={16} />
+            <div className="title">댓글</div>
+          </div>
+        </Link>
+      </div>
+    </Selector>
+  );
+};
 const OuterWrapper = styled.div`
   min-height: 150px;
   margin-bottom: 44px;
@@ -152,6 +166,25 @@ const Header = styled.header`
   & .header__column:nth-child(2) {
     flex-grow: 2;
   }
+
+  & .user__info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    & .user__infoColumn {
+      flex-grow: 1;
+    }
+  }
+
+  & .counts__list {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    & .counts__item {
+      margin-right: 40px;
+    }
+  }
 `;
 
 const UsernameRow = styled.div`
@@ -176,19 +209,32 @@ const Count = styled.li`
   }
 `;
 
-const FullName = styled(FatText)`
-  font-size: 16px;
+const Selector = styled.div`
+  width: 100%;
+  height: 53px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: ${(props) => props.theme.boxBorder};
+  & .selector__item {
+    & .selector__container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      & .icon {
+        margin-right: 6px;
+      }
+      & .title {
+      }
+    }
+  }
+  & .selector__item:not(:last-child) {
+    margin-right: 60px;
+  }
 `;
-
-const Bio = styled.p`
-  margin: 10px 0px;
-`;
-
 const Posts = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 200px);
   grid-template-rows: 200px;
   grid-auto-rows: 200px;
 `;
-
-const Selector = styled.div``;

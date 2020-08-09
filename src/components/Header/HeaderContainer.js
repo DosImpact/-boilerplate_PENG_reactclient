@@ -12,3 +12,8 @@ const HeaderComponent = (props) => {
   return <HeaderPresenter {...props} user={user} />;
 };
 export default withRouter(HeaderComponent);
+
+/**
+ * 개선 시나리오
+ * -
+ */
