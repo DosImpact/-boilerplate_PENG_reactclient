@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useQuery, gql } from "@apollo/client";
 
-import Card from "components/Card/Card";
+import Card from "components/Card/CardContainer";
 import Loader from "components/Loader";
 
 const getAllPost = gql`
