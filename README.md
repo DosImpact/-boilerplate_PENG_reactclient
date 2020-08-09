@@ -1,3 +1,7 @@
+# 재능무역
+
+![thumnail.png](thumnail.png)
+
 # feature
 
 - state 관리
