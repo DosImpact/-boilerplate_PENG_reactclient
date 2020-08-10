@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import Avatar from "components/Avatar";
 import {
   FaThinkPeaks,
   FaSearch,
@@ -10,6 +11,16 @@ import {
 } from "react-icons/fa";
 
 const HeaderPresneter = ({ user, ...props }) => {
+  const popUp = useRef();
+
+  const handlePopUp = () => {
+    if (popUp.current.style.display === "none") {
+      popUp.current.style.display = "block";
+    } else {
+      popUp.current.style.display = "none";
+    }
+  };
+
   return (
     <Header>
       <HeaderWrapper>
@@ -40,31 +51,44 @@ const HeaderPresneter = ({ user, ...props }) => {
           </div>
         </div>
         <div className="header__column">
-          <div className="Nav">
-            <div className="NavContainer">
-              <ul className="icon__list">
-                <Link to="/feed">
-                  <li className="icon__item">
-                    <FaRegCommentAlt size={24} />
-                    <div className="icon__title title04">피드</div>
-                  </li>
-                </Link>
-                <Link to="/">
-                  <li className="icon__item">
-                    <FaRegSave size={24} />
-                    <div className="icon__title title04">저장</div>
-                  </li>
-                </Link>
-                <Link to={`/user/${user.userDate.name || "dummy"}`}>
-                  <li className="icon__item">
-                    <FaRegUser size={24} />
-                    <div className="icon__title title04">
-                      {user.isLoggedIn ? "마이" : "로그인"}
-                    </div>
-                  </li>
-                </Link>
-              </ul>
-            </div>
+          <div className="quick">
+            <ul className="quick__list">
+              <li className="quick__item">글쓰기</li>
+              <li className="quick__item">MY 무역</li>
+              <li className="quick__item">
+                <div className="quick__itemImg" onClick={handlePopUp}>
+                  <Avatar size="sm" url={user.userDate.avatar} />
+                </div>
+                <div className="quick__itemName" onClick={handlePopUp}>
+                  {user.isLoggedIn ? `${user.userDate.name}` : "로그인"}
+                </div>
+                <div style={{ position: "relative" }}>
+                  <div className="header__popup" ref={popUp}>
+                    <ul className="header__list">
+                      <Link
+                        onClick={handlePopUp}
+                        className="header__item"
+                        to={`/user/${user.userDate.name || "dummy"}`}
+                      >
+                        <div className="blue">프로필 관리</div>
+                      </Link>
+                      <li className="header__item">
+                        <div>내가 쓴 포스트</div>
+                      </li>
+                      <li className="header__item">
+                        <div>내가 쓴 댓글</div>
+                      </li>
+                      <li className="header__item">
+                        <div>찜한 포스트</div>
+                      </li>
+                      <li className="header__item">
+                        <div>로그아웃</div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </li>
+            </ul>
           </div>
         </div>
       </HeaderWrapper>
@@ -100,17 +124,20 @@ const HeaderWrapper = styled.div`
   & .header__column {
   }
   & .header__column:first-child {
-    width: 168px;
-    margin-left: 10px;
+    flex-grow: 1;
+    /* width: 168px; */
+    /* margin-left: 10px; */
   }
 
   & .header__column:nth-child(2) {
-    width: 100%;
+    flex-grow: 3;
+    /* width: 100%; */
   }
 
   & .header__column:last-child {
-    width: 168px;
-    margin-left: 10px;
+    flex-grow: 1;
+    /* width: 168px; */
+    /* margin-left: 10px; */
   }
 
   & .logo {
@@ -149,27 +176,57 @@ const HeaderWrapper = styled.div`
     }
   }
 
-  & .Nav {
-    & .NavContainer {
-      & .icon__list {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-
-      & .icon__item {
+  & .header__popup {
+    display: none;
+    width: 167px;
+    height: 240px;
+    position: absolute;
+    top: 31px;
+    left: -105px;
+    border: ${(props) => props.theme.boxBorder};
+    z-index: 100;
+    background-color: ${(props) => props.theme.whiteColor};
+    & .header__list {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      & .header__item {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: center;
-        width: 48px;
+        width: 100%;
         height: 48px;
+        padding: 8px 16px;
+      }
+    }
+  }
+  & .quick {
+    & .quick__list {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      & .quick__itemImg {
+        margin-right: 5px;
       }
 
-      & .icon__title {
-        margin-top: 3px;
-        font-size: 10px;
-        color: ${(props) => props.theme.blackColor};
+      & .quick__item:first-child {
+      }
+      & .quick__item:not(:last-child) {
+        margin-right: 20px;
+      }
+      & .quick__item:nth-child(2) {
+        /* border-right:1px solid black; */
+        border-right: ${(props) => props.theme.boxBorder};
+        border-left: ${(props) => props.theme.boxBorder};
+        padding: 0px 10px;
+      }
+      & .quick__item:last-child {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
       }
     }
   }
