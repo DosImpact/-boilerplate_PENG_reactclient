@@ -24,6 +24,7 @@
 
 - [ ] 서버랑 연결불량일때 > frontPage가 공백
 - [ ] 리덕스 컴포넌트 + 최적화
+- [ ] Header popup 뛰울때 다른곳 누르면 들어가도록 만들기 ( useEffect 에서 비슷한거 했었는데.)
 
 ## tag apolloclient update v3.0
 

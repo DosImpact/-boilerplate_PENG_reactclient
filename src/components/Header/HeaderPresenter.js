@@ -114,7 +114,7 @@ const Header = styled.header`
 
 const HeaderWrapper = styled.div`
   width: 100%;
-  max-width: 768px;
+  max-width: 975px;
   margin: 0px auto;
   display: flex;
   justify-content: space-between;
