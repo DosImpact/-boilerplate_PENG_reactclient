@@ -4,6 +4,7 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import Feed from "../Routes/Feed";
 import Auth from "Routes/Authen/AuthContainer";
 
+import Newpost from "Routes/Newpost/index";
 import Explore from "../Routes/Explore";
 import Search from "../Routes/Search";
 import Profile from "../Routes/Profile";
@@ -21,11 +22,14 @@ import auth from "Hooks/auth";
 const LoggedInRoutes = () => (
   <Switch>
     <Route exact path="/" component={auth(Home, null)}></Route>
-    <Route exact path="/auth" component={auth(Auth, false)}></Route>
-    <Route exact path="/feed" component={auth(Feed, true)}></Route>
-    <Route exact path="/explore" component={auth(Explore, true)} />
     <Route exact path="/search" component={auth(Search, null)} />
     <Route exact path="/test" component={auth(Test, null)} />
+
+    <Route exact path="/auth" component={auth(Auth, false)}></Route>
+
+    <Route exact path="/newpost" component={auth(Newpost, true)}></Route>
+    <Route exact path="/feed" component={auth(Feed, true)}></Route>
+    <Route exact path="/explore" component={auth(Explore, true)} />
     <Route path="/user/:name" component={auth(Profile, true)} />
     <Redirect from="*" to="/" />
   </Switch>
