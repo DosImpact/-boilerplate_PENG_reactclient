@@ -7,7 +7,7 @@ import HeaderPresenter from "./HeaderPresenter";
 
 const HeaderComponent = (props) => {
   const user = useSelector((state) => state.log.toJS());
-  console.log("header.js", user);
+  // console.log("header.js", user);
 
   return <HeaderPresenter {...props} user={user} />;
 };
