@@ -12,12 +12,15 @@ import {
 
 const HeaderPresneter = ({ user, ...props }) => {
   const popUp = useRef();
+  const popUpFull = useRef();
 
   const handlePopUp = () => {
     if (popUp.current.style.display === "none") {
       popUp.current.style.display = "block";
+      popUpFull.current.style.display = "block";
     } else {
       popUp.current.style.display = "none";
+      popUpFull.current.style.display = "none";
     }
   };
 
@@ -59,10 +62,17 @@ const HeaderPresneter = ({ user, ...props }) => {
                 <div className="quick__itemImg" onClick={handlePopUp}>
                   <Avatar size="sm" url={user.userDate.avatar} />
                 </div>
+
                 <div className="quick__itemName" onClick={handlePopUp}>
                   {user.isLoggedIn ? `${user.userDate.name}` : "로그인"}
                 </div>
+
                 <div style={{ position: "relative" }}>
+                  <div
+                    className="header__full"
+                    ref={popUpFull}
+                    onClick={handlePopUp}
+                  ></div>
                   <div className="header__popup" ref={popUp}>
                     <ul className="header__list">
                       <Link
@@ -82,7 +92,7 @@ const HeaderPresneter = ({ user, ...props }) => {
                         <div>찜한 포스트</div>
                       </li>
                       <li className="header__item">
-                        <div>로그아웃</div>
+                        <div> {user.isLoggedIn ? "로그아웃" : "로그인"}</div>
                       </li>
                     </ul>
                   </div>
@@ -174,6 +184,19 @@ const HeaderWrapper = styled.div`
     & .SearchInput {
       all: unset;
     }
+  }
+
+  & .header__full {
+    /* background-color: rgba(255, 0, 0, 0.3); */
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    display: none;
   }
 
   & .header__popup {
