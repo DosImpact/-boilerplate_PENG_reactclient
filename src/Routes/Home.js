@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useQuery, gql } from "@apollo/client";
 
@@ -23,11 +23,14 @@ const getAllPost = gql`
 `;
 
 function Home(props) {
-  const { data, loading, error } = useQuery(getAllPost);
-  console.log(data, loading, error);
+  const { data, loading, error } = useQuery(getAllPost, {
+    fetchPolicy: "network-only",
+  });
+  console.log("Home rendering", data, loading, error);
   if (error) {
     props.history.push("/");
   }
+
   return (
     <Container className="Home__outerContainer">
       <div className="Home__innerContainer">

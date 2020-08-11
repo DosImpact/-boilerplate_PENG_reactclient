@@ -31,6 +31,19 @@
 - [ ] Header popup 뛰울때 다른곳 누르면 들어가도록 만들기 ( useEffect 에서 비슷한거 했었는데.)
 - [ ] Home 로그인 , 첫화면에서도 로그인 누르면 popup이 나온다.
 
+# 해결된 이슈
+
+1. (1) react-router-dom 에서 push("/") 했을때 Home 컴포넌트의 data가 refetch안되던 이슈
+
+- 원인 : apolloClient를 사용하면서 - caching 정책때문임.
+- 해결 : fetchPolicy: "network-only",
+
+```js
+const { data, loading, error } = useQuery(getAllPost, {
+  fetchPolicy: "network-only",
+});
+```
+
 ## tag apolloclient update v3.0
 
 - apolloclient update

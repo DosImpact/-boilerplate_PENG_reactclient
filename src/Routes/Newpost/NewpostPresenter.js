@@ -50,12 +50,13 @@ function NewpostPresenter({ createPost, _gotoHome }) {
               toast.error("글쓰기 실패");
             }
             setSubmitting(false);
+            _gotoHome();
           }}
           initialValues={{
-            title: "언어교환하실분 (프로그래밍-영어)",
-            location: "강남",
-            myTalent: "HTML",
-            youTalent: "피터슨급 영어실력",
+            title: "",
+            location: "",
+            myTalent: "",
+            youTalent: "",
           }}
           validationSchema={Yup.object().shape({
             // email: Yup.string().email().required("이메일 입력 필수"),

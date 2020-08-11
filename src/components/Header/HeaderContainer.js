@@ -1,7 +1,7 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 // import { logUserSave } from "_actions/log_actions";
 import HeaderPresenter from "./HeaderPresenter";
 
