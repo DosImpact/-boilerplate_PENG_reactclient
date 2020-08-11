@@ -10,6 +10,10 @@ function NewpostContainer() {
   const handleSummit = (e) => {
     e.target.preventDefault();
     console.log("submit");
+    //Example
+    // createPost({variables:{
+    //   name:null
+    // }})
   };
 
   const _gotoHome = () => {

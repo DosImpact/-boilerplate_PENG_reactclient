@@ -8,7 +8,6 @@ import Newpost from "Routes/Newpost/index";
 import Explore from "../Routes/Explore";
 import Search from "../Routes/Search";
 import Profile from "../Routes/Profile";
-import { Channel, Saved, Tagged } from "Routes/Profile/index";
 import Test from "../Routes/Test";
 import Home from "../Routes/Home";
 

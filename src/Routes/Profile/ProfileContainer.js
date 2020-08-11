@@ -1,10 +1,10 @@
 import React from "react";
 import { useRouteMatch } from "react-router-dom";
 import { useQuery } from "@apollo/client";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 
 import ProfilePresenter from "./ProfilePresenter";
-import { GET_USER, EDIT_USER } from "./ProfileGQL";
+import { GET_USER } from "./ProfileGQL";
 
 export default () => {
   let {

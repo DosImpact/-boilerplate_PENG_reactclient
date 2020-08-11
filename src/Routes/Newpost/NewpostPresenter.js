@@ -1,10 +1,16 @@
 import React from "react";
 import styled from "styled-components";
 
+import { Formik } from "formik";
+import * as Yup from "yup";
+
 function NewpostPresenter() {
   return (
     <OutterContainer>
-      <InnerContainer>newpost.js</InnerContainer>
+      <InnerContainer>
+        <h1>TEST FORMIK</h1>
+        <Formik></Formik>
+      </InnerContainer>
     </OutterContainer>
   );
 }

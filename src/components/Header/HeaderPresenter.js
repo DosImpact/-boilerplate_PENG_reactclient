@@ -2,13 +2,7 @@ import React, { useRef } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Avatar from "components/Avatar";
-import {
-  FaThinkPeaks,
-  FaSearch,
-  FaRegCommentAlt,
-  FaRegSave,
-  FaRegUser,
-} from "react-icons/fa";
+import { FaThinkPeaks, FaSearch } from "react-icons/fa";
 
 const HeaderPresneter = ({ user, ...props }) => {
   const popUp = useRef();
@@ -56,7 +50,9 @@ const HeaderPresneter = ({ user, ...props }) => {
         <div className="header__column">
           <div className="quick">
             <ul className="quick__list">
-              <li className="quick__item">글쓰기</li>
+              <Link className="quick__item" to="/newpost">
+                글쓰기
+              </Link>
               <li className="quick__item">MY 무역</li>
               <li className="quick__item">
                 <div className="quick__itemImg" onClick={handlePopUp}>

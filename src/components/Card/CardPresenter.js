@@ -9,12 +9,12 @@ function Card({ className, post, user }) {
   const { id: user_id, avatar: user_avatar, name: user_name } = user;
 
   return (
-    <Container className={className}>
+    <Container className={className} key={id}>
       <div className="card__wrapper">
         <div className="card__header">
           <div className="header__column">
             <Link to={`/user/${user_name || "dummy"}`}>
-              <div className="header__profile">
+              <div className="header__profile" key={user_id}>
                 <Avatar className="header__image" url={user_avatar} />
               </div>
             </Link>

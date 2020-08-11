@@ -40,7 +40,7 @@ const PostContainer = ({
 
   useEffect(() => {
     slide();
-  }, [currentItem]);
+  }, [currentItem, slide]);
 
   const toggleLike = () => {
     toggleLikeMutation();
