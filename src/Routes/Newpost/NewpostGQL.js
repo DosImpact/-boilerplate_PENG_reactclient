@@ -8,8 +8,8 @@ export const CREATE_POST = gql`
   mutation newPost(
     $caption: String!
     $location: String!
-    $mytalent: String
-    $youtalent: String
+    $mytalent: String!
+    $youtalent: String!
   ) {
     upload(
       caption: $caption

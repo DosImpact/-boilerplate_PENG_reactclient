@@ -7,20 +7,12 @@ import { useMutation } from "@apollo/client";
 function NewpostContainer() {
   const [createPost] = useMutation(CREATE_POST);
   const history = useHistory();
-  const handleSummit = (e) => {
-    e.target.preventDefault();
-    console.log("submit");
-    //Example
-    // createPost({variables:{
-    //   name:null
-    // }})
-  };
 
   const _gotoHome = () => {
     history.push("/");
   };
 
-  return <NewpostPresenter handleSummit={handleSummit} />;
+  return <NewpostPresenter createPost={createPost} _gotoHome={_gotoHome} />;
 }
 
 export default NewpostContainer;
