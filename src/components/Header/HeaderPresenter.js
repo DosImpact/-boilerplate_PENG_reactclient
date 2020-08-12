@@ -58,10 +58,15 @@ const HeaderPresneter = ({ user, ...props }) => {
                 <div className="quick__itemImg" onClick={handlePopUp}>
                   <Avatar size="sm" url={user.userDate.avatar} />
                 </div>
-
-                <div className="quick__itemName" onClick={handlePopUp}>
-                  {user.isLoggedIn ? `${user.userDate.name}` : "로그인"}
-                </div>
+                {user.isLoggedIn ? (
+                  <div className="quick__itemName" onClick={handlePopUp}>
+                    {user.userDate.name}
+                  </div>
+                ) : (
+                  <Link className="quick__itemName" to="/auth">
+                    로그인
+                  </Link>
+                )}
 
                 <div style={{ position: "relative" }}>
                   <div

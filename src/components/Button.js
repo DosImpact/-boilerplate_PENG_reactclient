@@ -15,8 +15,22 @@ const Container = styled.button`
   cursor: pointer;
 `;
 
-const Button = ({ className, text, onClick, children, color = "" }) => (
-  <Container className={className} onClick={onClick} color={color}>
+const Button = ({
+  type = "button",
+  className,
+  text,
+  onClick,
+  children,
+  color = "",
+  disabled,
+}) => (
+  <Container
+    type={type}
+    className={className}
+    onClick={onClick}
+    color={color}
+    disabled={disabled}
+  >
     {text ? text : children}
   </Container>
 );

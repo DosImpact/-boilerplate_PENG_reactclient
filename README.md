@@ -38,6 +38,8 @@
 - 원인 : apolloClient를 사용하면서 - caching 정책때문임.
 - 해결 : fetchPolicy: "network-only",
 
+2. fixed auth presenter - 비로그인시 pop창 없이 바로 로그인화면
+
 ```js
 const { data, loading, error } = useQuery(getAllPost, {
   fetchPolicy: "network-only",

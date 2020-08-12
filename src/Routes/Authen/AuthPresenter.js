@@ -1,6 +1,8 @@
 import React from "react";
 import { FaFacebook, FaGoogle, FaKaggle } from "react-icons/fa";
 
+import DisplayState from "test/DisplayState";
+
 import Button from "components/Button";
 import Input from "components/Input";
 import styled from "styled-components";
@@ -8,19 +10,24 @@ import styled from "styled-components";
 function Auth({
   actionType,
   action,
-  setAction,
-  name,
-  email,
-  firstName,
-  lastName,
-  bio,
-  secret,
-  handleLoginToConfirm,
-  handleConfirmToHome,
-  handleTosignUp,
+  formik,
+  ActionChangeLogin,
+  ActionChangeSignUp,
+  ActionChangeConfirm,
 }) {
+  const {
+    handleSubmit,
+    values,
+    handleChange,
+    handleBlur,
+    handleReset,
+    errors,
+    touched,
+    dirty,
+    isSubmitting,
+  } = formik;
   return (
-    <AuthContainer className="outterContainer">
+    <AuthPresenter className="outterContainer">
       <div className="innerContainer">
         <div className="innerWrapper">
           <div className="auth">
@@ -29,7 +36,32 @@ function Auth({
                 <div className="auth__login title01">로그인</div>
                 <form
                   className="auth__loginFrom"
+                  onSubmit={handleSubmit}
+                  // onSubmit={handleSubmit}
+                >
+                  <Input
+                    type="text"
+                    id="email"
+                    value={values.email}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    className="auth__loginInput "
+                    placeholder="이메일을 입력해주세요."
+                  ></Input>
+                  {errors.email && touched.email && <div>{errors.email}</div>}
+                  <Button
+                    type="submit"
+                    disabled={isSubmitting}
+                    onClick={handleSubmit}
+                    className="auth__loginButton blueBG"
+                  >
+                    <span className="title01">로그인</span>
+                  </Button>
+                </form>
+                {/* <form
+                  className="auth__loginFrom"
                   onSubmit={handleLoginToConfirm}
+                  // onSubmit={handleSubmit}
                 >
                   <Input
                     {...email}
@@ -39,7 +71,7 @@ function Auth({
                   <Button className="auth__loginButton blueBG" type="submit">
                     <span className="title01">로그인</span>
                   </Button>
-                </form>
+                </form> */}
                 <div className="auth__loginSNS">
                   <Button className="auth__loginButton googleBG" type="submit">
                     <FaGoogle style={{ marginRight: 10, fontSize: 18 }} />
@@ -59,16 +91,25 @@ function Auth({
             {action === actionType.confirm && (
               <div>
                 <div className="auth__login title01">이메일 인증</div>
-                <form
-                  className="auth__loginFrom"
-                  onSubmit={handleConfirmToHome}
-                >
+                <form className="auth__loginFrom" onSubmit={handleSubmit}>
                   <Input
-                    {...secret}
+                    type="text"
+                    id="secret"
+                    value={values.secret}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
                     className="auth__loginInput "
                     placeholder="이메일을 확인해 주세요."
                   ></Input>
-                  <Button className="auth__loginButton blueBG" type="submit">
+                  {errors.secret && touched.secret && (
+                    <div>{errors.secret}</div>
+                  )}
+                  <Button
+                    type="submit"
+                    disabled={isSubmitting}
+                    onClick={handleSubmit}
+                    className="auth__loginButton blueBG"
+                  >
                     <span className="title01">인증 하기</span>
                   </Button>
                 </form>
@@ -77,30 +118,50 @@ function Auth({
             {action === actionType.signUp && (
               <div>
                 <div className="auth__login title01">회원 가입</div>
-                <form className="auth__loginFrom">
+                <form className="auth__loginFrom" onSubmit={handleSubmit}>
                   <Input
-                    {...name}
                     className="auth__loginInput "
+                    type="text"
+                    id="name"
                     placeholder="이름"
+                    value={values.name}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
                   ></Input>
                   <Input
-                    {...email}
+                    value={values.email}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
                     className="auth__loginInput "
+                    type="text"
+                    id="email"
                     placeholder="이메일"
                   ></Input>
                   <Input
-                    {...firstName}
+                    value={values.firstName}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
                     className="auth__loginInput "
+                    type="text"
+                    id="firstName"
                     placeholder="성"
                   ></Input>
                   <Input
-                    {...lastName}
+                    value={values.lastName}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
                     className="auth__loginInput "
+                    type="text"
+                    id="lastName"
                     placeholder="이름"
                   ></Input>
                   <Input
-                    {...bio}
+                    value={values.bio}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
                     className="auth__loginInput "
+                    type="text"
+                    id="bio"
                     placeholder="성별"
                   ></Input>
                   <Button className="auth__loginButton blueBG" type="submit">
@@ -117,7 +178,7 @@ function Auth({
                 <div className="forget__change">
                   <div
                     className="signUp__button title04 blue"
-                    onClick={() => setAction(actionType.confirm)}
+                    onClick={ActionChangeSignUp}
                   ></div>
                 </div>
                 <div className="signUp__change">
@@ -125,7 +186,7 @@ function Auth({
                     <div className="title04">아직 회원이 아니세요?</div>
                     <div
                       className="signUp__button title01 blue"
-                      onClick={() => setAction(actionType.signUp)}
+                      onClick={ActionChangeSignUp}
                     >
                       회원가입
                     </div>
@@ -141,7 +202,7 @@ function Auth({
                     <div className="title04">이메일 인증이 안되나요?</div>
                     <div
                       className="signUp__button title01 blue"
-                      onClick={() => setAction(actionType.login)}
+                      onClick={ActionChangeLogin}
                     >
                       첫화면
                     </div>
@@ -157,7 +218,7 @@ function Auth({
                     <div className="title04"> 이미 회원인가요? </div>
                     <div
                       className="signUp__button title01 blue"
-                      onClick={() => setAction(actionType.login)}
+                      onClick={ActionChangeLogin}
                     >
                       로그인 화면
                     </div>
@@ -168,13 +229,13 @@ function Auth({
           </div>
         </div>
       </div>
-    </AuthContainer>
+    </AuthPresenter>
   );
 }
 
 export default Auth;
 
-const AuthContainer = styled.div`
+const AuthPresenter = styled.div`
   width: 100%;
   max-width: 768px;
   margin: 0px auto;

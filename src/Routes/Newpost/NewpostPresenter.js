@@ -60,10 +60,10 @@ function NewpostPresenter({ createPost, _gotoHome }) {
           }}
           validationSchema={Yup.object().shape({
             // email: Yup.string().email().required("이메일 입력 필수"),
-            title: Yup.string().required("입력 필수"),
-            location: Yup.string().required("입력 필수"),
-            myTalent: Yup.string().required("입력 필수"),
-            youTalent: Yup.string().required("입력 필수"),
+            title: Yup.string().required("제목 필수"),
+            location: Yup.string().required("장소 필수"),
+            myTalent: Yup.string().required("나의 재능 필수"),
+            youTalent: Yup.string().required("교환받을 재능 필수"),
           })}
         >
           {(props) => {
