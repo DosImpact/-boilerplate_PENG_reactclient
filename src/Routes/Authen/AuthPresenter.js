@@ -1,11 +1,28 @@
 import React from "react";
 import { FaFacebook, FaGoogle, FaKaggle } from "react-icons/fa";
 
-import DisplayState from "test/DisplayState";
-
 import Button from "components/Button";
 import Input from "components/Input";
 import styled from "styled-components";
+
+const SNSLogin = () => {
+  return (
+    <div className="auth__loginSNS">
+      <Button className="auth__loginButton googleBG" type="submit">
+        <FaGoogle style={{ marginRight: 10, fontSize: 18 }} />
+        <span className="title01 ">구글로 로그인</span>
+      </Button>
+      <Button className="auth__loginButton facebookBG">
+        <FaFacebook style={{ marginRight: 10, fontSize: 18 }} />
+        <span className="title01">페이스북으로 로그인</span>
+      </Button>
+      <Button className="auth__loginButton kakaoBG" type="submit">
+        <FaKaggle style={{ marginRight: 10, fontSize: 18 }} />
+        <span className="title01 black">카카오 계정 로그인</span>
+      </Button>
+    </div>
+  );
+};
 
 function Auth({
   actionType,
@@ -58,34 +75,8 @@ function Auth({
                     <span className="title01">로그인</span>
                   </Button>
                 </form>
-                {/* <form
-                  className="auth__loginFrom"
-                  onSubmit={handleLoginToConfirm}
-                  // onSubmit={handleSubmit}
-                >
-                  <Input
-                    {...email}
-                    className="auth__loginInput "
-                    placeholder="이메일을 입력해주세요."
-                  ></Input>
-                  <Button className="auth__loginButton blueBG" type="submit">
-                    <span className="title01">로그인</span>
-                  </Button>
-                </form> */}
-                <div className="auth__loginSNS">
-                  <Button className="auth__loginButton googleBG" type="submit">
-                    <FaGoogle style={{ marginRight: 10, fontSize: 18 }} />
-                    <span className="title01 ">구글로 로그인</span>
-                  </Button>
-                  <Button className="auth__loginButton facebookBG">
-                    <FaFacebook style={{ marginRight: 10, fontSize: 18 }} />
-                    <span className="title01">페이스북으로 로그인</span>
-                  </Button>
-                  <Button className="auth__loginButton kakaoBG" type="submit">
-                    <FaKaggle style={{ marginRight: 10, fontSize: 18 }} />
-                    <span className="title01 black">카카오 계정 로그인</span>
-                  </Button>
-                </div>
+
+                <SNSLogin />
               </div>
             )}
             {action === actionType.confirm && (
@@ -128,6 +119,7 @@ function Auth({
                     onChange={handleChange}
                     onBlur={handleBlur}
                   ></Input>
+                  {errors.name && touched.name && <div>{errors.name}</div>}
                   <Input
                     value={values.email}
                     onChange={handleChange}
@@ -137,6 +129,7 @@ function Auth({
                     id="email"
                     placeholder="이메일"
                   ></Input>
+                  {errors.email && touched.email && <div>{errors.email}</div>}
                   <Input
                     value={values.firstName}
                     onChange={handleChange}
