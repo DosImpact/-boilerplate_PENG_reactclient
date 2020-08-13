@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Avatar from "components/Avatar";
 import { FaThinkPeaks, FaSearch } from "react-icons/fa";
 
-const HeaderPresneter = ({ user, ...props }) => {
+const HeaderPresneter = ({ user, term, handleSubmit, ...props }) => {
   const popUp = useRef();
   const popUpFull = useRef();
 
@@ -37,12 +37,15 @@ const HeaderPresneter = ({ user, ...props }) => {
           <div className="Search">
             <div className="SearchContainer">
               <FaSearch className="SearchIcon" size={18} color="gray" />
-              <form>
+              <form onSubmit={handleSubmit}>
                 <input
                   className="SearchInput"
                   type="text"
                   placeholder="재능 검색하기"
+                  value={term.value}
+                  onChange={term.onChange}
                 ></input>
+                <button style={{ display: "none" }} type="submit" />
               </form>
             </div>
           </div>
@@ -53,7 +56,9 @@ const HeaderPresneter = ({ user, ...props }) => {
               <Link className="quick__item" to="/newpost">
                 글쓰기
               </Link>
-              <li className="quick__item">MY 무역</li>
+              <Link className="quick__item" to="/mypost">
+                MY 무역
+              </Link>
               <li className="quick__item">
                 <div className="quick__itemImg" onClick={handlePopUp}>
                   <Avatar size="sm" url={user?.userData?.avatar || null} />

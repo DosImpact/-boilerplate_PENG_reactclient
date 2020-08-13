@@ -1,35 +1,46 @@
 import React from "react";
 import styled from "styled-components";
+import { useParams } from "react-router-dom";
 
 import { useQuery } from "@apollo/client";
-import { MY_POST } from "./MyPostGQL";
+import { SEARCH_POST } from "./SearchPostGQL";
 
 import { useSelector } from "react-redux";
 
+import NoResult from "components/NoResult";
 import Card from "components/Card/CardContainer";
 import Loader from "components/Loader";
 
-function MyPost(props) {
+function SearchPost(props) {
+  const params = useParams();
+  // console.log(params);
+  // const term = "강남";
   const log = useSelector((state) => state.log.toJS());
-  const { data, loading, error } = useQuery(MY_POST);
-  console.log("MyPost rendering", data, loading, error);
+  const { data, loading, error } = useQuery(SEARCH_POST, {
+    variables: {
+      term: params.term,
+    },
+  });
+  console.log("SearchPost rendering", data, loading, error);
   if (error) {
     props.history.push("/");
   }
 
   return (
-    <Container className="MyPost__outerContainer">
-      <div className="MyPost__innerContainer">
+    <Container className="SearchPost__outerContainer">
+      <div className="SearchPost__innerContainer">
         <div className="card__list">
           {loading && <Loader />}
+          {!loading && data?.searchPost && data?.searchPost.length === 0 && (
+            <NoResult text="결과가 없습니다 :(" />
+          )}
           {!loading &&
             data &&
-            data?.myPosts &&
-            data.myPosts.map((e, idx) => {
+            data?.searchPost &&
+            data.searchPost.map((e, idx) => {
               return (
                 <Card
                   className="card__item"
-                  size="sm"
                   key={idx}
                   user={log.userData}
                   {...e}
@@ -42,12 +53,12 @@ function MyPost(props) {
   );
 }
 
-export default MyPost;
+export default SearchPost;
 
 const Container = styled.div`
   width: 100%;
   margin-bottom: 100px;
-  & .MyPost__innerContainer {
+  & .SearchPost__innerContainer {
     width: 100%;
     max-width: 1050px;
     margin: auto;

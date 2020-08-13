@@ -23,7 +23,13 @@ export const CREATE_POST = gql`
 `;
 
 export const MY_POST = gql`
-  query myPost(){
-    
+  query myPost {
+    myPosts {
+      id
+      location
+      caption
+      mytalent
+      youtalent
+    }
   }
 `;

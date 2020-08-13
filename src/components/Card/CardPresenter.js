@@ -2,14 +2,15 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
+import Button from "components/Button";
 import Avatar from "components/Avatar";
 
-function Card({ className, post, user }) {
+function Card({ className, post, size, user }) {
   const { id, location, caption, mytalent, youtalent } = post;
   const { id: user_id, avatar: user_avatar, name: user_name } = user;
 
   return (
-    <Container className={className} key={id}>
+    <Container className={className} key={id} size={size}>
       <div className="card__wrapper">
         <div className="card__header">
           <div className="header__column">
@@ -31,6 +32,12 @@ function Card({ className, post, user }) {
             <div className="content__01 title01">{mytalent}</div>
             <div className="content__02 title01">{youtalent}</div>
           </div>
+          {/* <Button
+            // onClick={handleSubmit}
+            className="apply__Button blueBG"
+          >
+            <span className="title01">신청하기</span>
+          </Button> */}
         </div>
       </div>
     </Container>
@@ -39,20 +46,24 @@ function Card({ className, post, user }) {
 
 const Container = styled.div`
   width: 500px;
-  height: 400px;
+  height: 300px;
+  ${(props) => (props.size === "sm" ? `height:200px;` : ``)};
   /* background-color: ${(props) => props.theme.lightGreyColor}; */
   border-radius: 6px;
   padding: 30px;
-  border:${(props) => props.theme.boxBorder}
+  border:${(props) => props.theme.boxBorder};
   
   & .card__wrapper {
     width: 100%;
     height: 100%;
+    display: flex;
+    flex-direction:column;
   }
   & .card__header {
     display: flex;
     align-items: center;
     height: 40px;
+ 
     & .card__column {
     }
 
@@ -65,12 +76,13 @@ const Container = styled.div`
   }
 
   & .card__content {
-    height: 100%;
+    height:calc(100% - 40px);
     & .content__ {
-      height: 100%;
       display: flex;
       justify-content: space-around;
       align-items: center;
+      /* height:calc(100% - 60px); */
+        height:100%;
     }
 
     & .content__01 {
@@ -78,6 +90,11 @@ const Container = styled.div`
 
     & .content__02 {
       color: ${(props) => props.theme.blueColor};
+    }
+
+    & .apply__Button{
+     flex-grow:1;
+     height:60px; 
     }
   }
 `;

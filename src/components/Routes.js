@@ -6,10 +6,12 @@ import Auth from "Routes/Authen/AuthContainer";
 
 import Newpost from "Routes/Newpost/index";
 import Explore from "../Routes/Explore";
-import Search from "../Routes/Search";
+// import Search from "../Routes/Search";
+import SearchPost from "Routes/SearchPost/SearchPost";
 import Profile from "../Routes/Profile";
 import Test from "../Routes/Test";
 import Home from "../Routes/Home";
+import MyPost from "../Routes/MyPost/MyPost";
 
 import auth from "Hooks/auth";
 
@@ -21,11 +23,12 @@ import auth from "Hooks/auth";
 const LoggedInRoutes = () => (
   <Switch>
     <Route exact path="/" component={auth(Home, null)}></Route>
-    <Route exact path="/search" component={auth(Search, null)} />
+    <Route exact path="/search/:term" component={auth(SearchPost, null)} />
     <Route exact path="/test" component={auth(Test, null)} />
 
     <Route exact path="/auth" component={auth(Auth, false)}></Route>
 
+    <Route exact path="/mypost" component={auth(MyPost, true)}></Route>
     <Route exact path="/newpost" component={auth(Newpost, true)}></Route>
     <Route exact path="/feed" component={auth(Feed, true)}></Route>
     <Route exact path="/explore" component={auth(Explore, true)} />
