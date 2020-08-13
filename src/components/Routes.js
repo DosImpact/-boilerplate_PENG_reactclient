@@ -29,7 +29,7 @@ const LoggedInRoutes = () => (
     <Route exact path="/newpost" component={auth(Newpost, true)}></Route>
     <Route exact path="/feed" component={auth(Feed, true)}></Route>
     <Route exact path="/explore" component={auth(Explore, true)} />
-    <Route exact path="/user/:name" component={auth(Profile, true)} />
+    <Route path="/user/:name" component={auth(Profile, true)} />
     <Redirect from="*" to="/" />
   </Switch>
 );

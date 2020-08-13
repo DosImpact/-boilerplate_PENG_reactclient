@@ -57,10 +57,9 @@ function Auth(props) {
 
   const [requestSecret] = useMutation(REQUEST_SECRET);
   const [confirmSecret] = useMutation(CONFIRM_SECRET);
-  const [
-    createAccount,
-    { loading: createAccountLoading, error: createAccountError },
-  ] = useMutation(CREATE_ACCOUNT);
+  const [createAccount, { loading: createAccountLoading }] = useMutation(
+    CREATE_ACCOUNT
+  );
 
   const ActionChangeLogin = () => {
     setAction(actionType.login);
