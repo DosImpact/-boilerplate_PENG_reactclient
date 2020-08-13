@@ -33,16 +33,19 @@
 - [ ] Header popup 뛰울때 다른곳 누르면 들어가도록 만들기 ( useEffect 에서 비슷한거 했었는데.)
 - [ ] Home 로그인 , 첫화면에서도 로그인 누르면 popup이 나온다.
 
-- [ ] 리덕스 컴포넌트 무한 로딩 이슈
-
 # 해결된 이슈
 
-1. (1) react-router-dom 에서 push("/") 했을때 Home 컴포넌트의 data가 refetch안되던 이슈
+- [✔] react-router-dom 에서 push("/") 했을때 Home 컴포넌트의 data가 refetch안되던 이슈
 
 - 원인 : apolloClient를 사용하면서 - caching 정책때문임.
 - 해결 : fetchPolicy: "network-only",
 
-2. fixed auth presenter - 비로그인시 pop창 없이 바로 로그인화면
+- [✔] fixed auth presenter - 비로그인시 pop창 없이 바로 로그인화면
+
+- [✔] 리덕스 컴포넌트 무한 로딩 이슈
+
+- 원인 : 함수명 중복, 심지어 컴포넌트 무한로딩이 아니었음 (분석 실패)
+- 해결 : handleLogOut ( button에 들어가는 이름), LogOutActionCreator 이름 짓기의 중요성
 
 ```js
 const { data, loading, error } = useQuery(getAllPost, {
