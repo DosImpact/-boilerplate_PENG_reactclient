@@ -20,7 +20,7 @@ function Auth(props) {
   const [action, setAction] = useState(actionType.login);
   const [validationSchema, setValidationSchema] = useState(
     Yup.object().shape({
-      email: Yup.string().email("email 형식 틀림").required("required"),
+      email: Yup.string().email("이메일 형식 틀림").required("required"),
       name: Yup.string(),
       firstName: Yup.string(),
       lastName: Yup.string(),
@@ -40,7 +40,7 @@ function Auth(props) {
     },
     onSubmit: async (data, { setSubmitting }) => {
       setSubmitting(true);
-      console.log(data, action);
+      console.log("onSubmit", data, action);
       if (action === actionType.login) {
         await handleLoginTo(data);
       }
@@ -57,13 +57,16 @@ function Auth(props) {
 
   const [requestSecret] = useMutation(REQUEST_SECRET);
   const [confirmSecret] = useMutation(CONFIRM_SECRET);
-  const [createAccount] = useMutation(CREATE_ACCOUNT);
+  const [
+    createAccount,
+    { loading: createAccountLoading, error: createAccountError },
+  ] = useMutation(CREATE_ACCOUNT);
 
   const ActionChangeLogin = () => {
     setAction(actionType.login);
     setValidationSchema(
       Yup.object().shape({
-        email: Yup.string().email("email 형식 틀림").required("required"),
+        email: Yup.string().email("이메일 형식 틀림").required("필수 입력란"),
       })
     );
   };
@@ -71,7 +74,7 @@ function Auth(props) {
     setAction(actionType.signUp);
     setValidationSchema(
       Yup.object().shape({
-        email: Yup.string().email("email 형식 틀림").required("required"),
+        email: Yup.string().email("이메일 형식 틀림").required("필수 입력란"),
         name: Yup.string().required("required"),
         firstName: Yup.string(),
         lastName: Yup.string(),
@@ -88,12 +91,7 @@ function Auth(props) {
     );
   };
 
-  const handleLoginTo = async (data) => {
-    const { email } = data;
-    if (email === "") {
-      toast.error("이메일을 입력해 주세요.");
-      return;
-    }
+  const _handleRequestSecret = async (email) => {
     try {
       await requestSecret({
         variables: {
@@ -106,6 +104,15 @@ function Auth(props) {
       console.log(error);
       toast.error("해당 이메일이 없습니다.");
     }
+  };
+
+  const handleLoginTo = async (data) => {
+    const { email } = data;
+    if (email === "") {
+      toast.error("이메일을 입력해 주세요.");
+      return;
+    }
+    await _handleRequestSecret(email);
   };
 
   const handleConfirmTo = async (data) => {
@@ -132,7 +139,31 @@ function Auth(props) {
   //confirm
 
   const handleSignUpTo = async (data) => {
+    console.log("handleSignUpTo", "start");
     const { name, email, firstName, lastName, bio } = data;
+
+    try {
+      const {
+        data: { createUser: createUserResult },
+      } = createAccount({
+        variables: {
+          name,
+          email,
+          firstName,
+          lastName,
+          bio,
+        },
+      });
+      console.log("handleSignUpTo", createUserResult);
+      toast.success("회원가입 완료");
+    } catch (error) {
+      console.error("회원가입실패");
+      console.dir(error);
+      toast.error("이미 등록된 이름이나 이메일입니다.");
+      return;
+    }
+
+    // await _handleRequestSecret(email);
   };
 
   return (
@@ -143,6 +174,7 @@ function Auth(props) {
       ActionChangeLogin={ActionChangeLogin}
       ActionChangeSignUp={ActionChangeSignUp}
       ActionChangeConfirm={ActionChangeConfirm}
+      createAccountLoading={createAccountLoading}
     />
   );
 }

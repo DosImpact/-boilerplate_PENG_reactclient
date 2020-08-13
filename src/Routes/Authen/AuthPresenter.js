@@ -4,6 +4,7 @@ import { FaFacebook, FaGoogle, FaKaggle } from "react-icons/fa";
 import Button from "components/Button";
 import Input from "components/Input";
 import styled from "styled-components";
+import { Loader } from "components";
 
 const SNSLogin = () => {
   return (
@@ -31,6 +32,7 @@ function Auth({
   ActionChangeLogin,
   ActionChangeSignUp,
   ActionChangeConfirm,
+  createAccountLoading,
 }) {
   const {
     handleSubmit,
@@ -114,7 +116,7 @@ function Auth({
                     className="auth__loginInput "
                     type="text"
                     id="name"
-                    placeholder="이름"
+                    placeholder="닉네임"
                     value={values.name}
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -157,6 +159,7 @@ function Auth({
                     id="bio"
                     placeholder="성별"
                   ></Input>
+                  {createAccountLoading ? <Loader /> : <Loader />}
                   <Button className="auth__loginButton blueBG" type="submit">
                     <span className="title01">가입 하기</span>
                   </Button>
