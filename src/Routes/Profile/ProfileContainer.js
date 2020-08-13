@@ -1,24 +1,28 @@
 import React from "react";
-import { useRouteMatch } from "react-router-dom";
+import { useRouteMatch, useHistory } from "react-router-dom";
 import { useQuery } from "@apollo/client";
-// import { useDispatch } from "react-redux";
+
+import { logOut } from "_actions/log_actions";
+import { useDispatch } from "react-redux";
 
 import ProfilePresenter from "./ProfilePresenter";
 import { GET_USER } from "./ProfileGQL";
 
 export default () => {
+  const dispatch = useDispatch();
   let {
     params: { name },
     path,
   } = useRouteMatch();
-  // console.log("useRouteMatchData", useRouteMatchData);
+  const history = useHistory();
 
-  // console.log(username);
   const { data, loading, error } = useQuery(GET_USER, {
     variables: { name },
   });
   const logOut = () => {
     console.log("LogOut");
+    dispatch(logOut());
+    // history.push("/");
   };
   return (
     <ProfilePresenter

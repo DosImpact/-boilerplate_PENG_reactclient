@@ -159,7 +159,7 @@ function Auth({
                     id="bio"
                     placeholder="성별"
                   ></Input>
-                  {createAccountLoading ? <Loader /> : <Loader />}
+                  {createAccountLoading ? <Loader /> : null}
                   <Button className="auth__loginButton blueBG" type="submit">
                     <span className="title01">가입 하기</span>
                   </Button>

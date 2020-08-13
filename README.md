@@ -33,6 +33,8 @@
 - [ ] Header popup 뛰울때 다른곳 누르면 들어가도록 만들기 ( useEffect 에서 비슷한거 했었는데.)
 - [ ] Home 로그인 , 첫화면에서도 로그인 누르면 popup이 나온다.
 
+- [ ] 리덕스 컴포넌트 무한 로딩 이슈
+
 # 해결된 이슈
 
 1. (1) react-router-dom 에서 push("/") 했을때 Home 컴포넌트의 data가 refetch안되던 이슈
@@ -47,6 +49,10 @@ const { data, loading, error } = useQuery(getAllPost, {
   fetchPolicy: "network-only",
 });
 ```
+
+# 개선사항 및 피드백
+
+1. Loader 와 같은 모듈을 만드는것은 매우 좋다. MUI를 보니, 디자인 자체에 padding을 넣어서 w,h에 자유를 주고 padding으로 간격을 유지
 
 ## tag apolloclient update v3.0
 

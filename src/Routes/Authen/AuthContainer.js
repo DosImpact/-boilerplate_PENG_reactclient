@@ -144,8 +144,8 @@ function Auth(props) {
 
     try {
       const {
-        data: { createUser: createUserResult },
-      } = createAccount({
+        data: { createAccount: createAccountResult },
+      } = await createAccount({
         variables: {
           name,
           email,
@@ -154,8 +154,12 @@ function Auth(props) {
           bio,
         },
       });
-      console.log("handleSignUpTo", createUserResult);
-      toast.success("회원가입 완료");
+      // console.log("handleSignUpTo", createAccountResult);
+      if (createAccountResult) {
+        // toast.success("회원가입 완료");
+      } else {
+        throw Error("회원가입 실패");
+      }
     } catch (error) {
       console.error("회원가입실패");
       console.dir(error);
@@ -163,7 +167,7 @@ function Auth(props) {
       return;
     }
 
-    // await _handleRequestSecret(email);
+    await _handleRequestSecret(email);
   };
 
   return (

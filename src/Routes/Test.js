@@ -18,6 +18,14 @@ const DisplayState = (props) => {
     </div>
   );
 };
+const DefaultCom = ({ name = "sample", age = 10 }) => {
+  return (
+    <>
+      <div>your name {name}</div>
+      <div>your age {age}</div>
+    </>
+  );
+};
 
 export default function App() {
   const formik = useFormik({
@@ -35,6 +43,7 @@ export default function App() {
 
   return (
     <div className="App">
+      <DefaultCom />
       <h1>Hello Formik</h1>
       <form onSubmit={formik.handleSubmit}>
         <label htmlFor="email">Email</label>

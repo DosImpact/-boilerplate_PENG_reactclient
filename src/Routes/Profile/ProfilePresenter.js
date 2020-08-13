@@ -54,11 +54,7 @@ export default ({ loading, data, logOut, path, error }) => {
                 <Username className="user__infoColumn">{name}</Username>
                 <div className="user__infoColumn">
                   {isSelf ? (
-                    <Button
-                      color="#3C82FF"
-                      onClick={(e) => logOut}
-                      text="Log Out"
-                    />
+                    <Button color="#3C82FF" onClick={logOut} text="Log Out" />
                   ) : (
                     <FollowButton isFollowing={isFollowing} id={id} />
                   )}
