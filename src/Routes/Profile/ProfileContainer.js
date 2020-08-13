@@ -19,15 +19,17 @@ export default () => {
   const { data, loading, error } = useQuery(GET_USER, {
     variables: { name },
   });
-  const logOut = () => {
+
+  const handleLogOut = () => {
     console.log("LogOut");
     dispatch(logOut());
-    // history.push("/");
+    history.push("/");
   };
+
   return (
     <ProfilePresenter
       loading={loading}
-      logOut={logOut}
+      handleLogOut={handleLogOut}
       data={data}
       path={path}
       error={error}

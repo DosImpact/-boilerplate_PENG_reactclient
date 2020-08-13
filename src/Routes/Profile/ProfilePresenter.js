@@ -12,7 +12,7 @@ import FollowButton from "../../components/FollowButton";
 import SquarePost from "../../components/SquarePost";
 import Button from "../../components/Button";
 
-export default ({ loading, data, logOut, path, error }) => {
+export default ({ loading, data, handleLogOut, path, error }) => {
   if (loading === true) {
     return (
       <OuterWrapper>
@@ -54,7 +54,11 @@ export default ({ loading, data, logOut, path, error }) => {
                 <Username className="user__infoColumn">{name}</Username>
                 <div className="user__infoColumn">
                   {isSelf ? (
-                    <Button color="#3C82FF" onClick={logOut} text="Log Out" />
+                    <Button
+                      color="#3C82FF"
+                      onClick={handleLogOut}
+                      text="Log Out"
+                    />
                   ) : (
                     <FollowButton isFollowing={isFollowing} id={id} />
                   )}

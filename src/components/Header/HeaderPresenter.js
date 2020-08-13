@@ -56,11 +56,11 @@ const HeaderPresneter = ({ user, ...props }) => {
               <li className="quick__item">MY 무역</li>
               <li className="quick__item">
                 <div className="quick__itemImg" onClick={handlePopUp}>
-                  <Avatar size="sm" url={user.userDate.avatar} />
+                  <Avatar size="sm" url={user?.userData?.avatar || null} />
                 </div>
                 {user.isLoggedIn ? (
                   <div className="quick__itemName" onClick={handlePopUp}>
-                    {user.userDate.name}
+                    {user.userData.name}
                   </div>
                 ) : (
                   <Link className="quick__itemName" to="/auth">
@@ -79,7 +79,7 @@ const HeaderPresneter = ({ user, ...props }) => {
                       <Link
                         onClick={handlePopUp}
                         className="header__item"
-                        to={`/user/${user.userDate.name || "dummy"}`}
+                        to={`/user/${user.userData.name || "dummy"}`}
                       >
                         <div className="blue">프로필 관리</div>
                       </Link>

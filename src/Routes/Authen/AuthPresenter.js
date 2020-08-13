@@ -92,7 +92,7 @@ function Auth({
                     onChange={handleChange}
                     onBlur={handleBlur}
                     className="auth__loginInput "
-                    placeholder="이메일을 확인해 주세요."
+                    placeholder="이메일의 인증 문자를 입력해 주세요"
                   ></Input>
                   {errors.secret && touched.secret && (
                     <div>{errors.secret}</div>
