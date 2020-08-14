@@ -11,6 +11,10 @@ function Card({ className, post, size, user }) {
 
   return (
     <Container className={className} key={id} size={size}>
+      {/* <div className="card__image">
+        <img src="https://res.cloudinary.com/frientrip/image/upload/ar_75:56,c_fill,dpr_2,f_auto,w_310/product_banner_1589952171045_706993"></img>
+        <div className="card__cover"></div>
+      </div> */}
       <div className="card__wrapper">
         <div className="card__header">
           <div className="header__column">
@@ -52,12 +56,30 @@ const Container = styled.div`
   border-radius: 6px;
   padding: 30px;
   border:${(props) => props.theme.boxBorder};
-  
+  position:relative;
+  & .card__image{
+     position:absolute;
+     width: 500px;
+     height: 300px;
+     top:0px;
+     left:0px;
+     
+      & img {
+        height:100%;
+        width: 100%;
+        opacity:0.5;
+        border-radius: 6px;
+      }
+    
+    }
   & .card__wrapper {
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction:column;
+    position:relative;
+
+
   }
   & .card__header {
     display: flex;
