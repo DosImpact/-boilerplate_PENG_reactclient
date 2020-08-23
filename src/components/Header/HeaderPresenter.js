@@ -1,8 +1,19 @@
 import React, { useRef } from "react";
+import { down, up } from "styled-breakpoints";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+
+import {
+  FaThinkPeaks,
+  FaSearch,
+  FaBars,
+  FaHome,
+  FaWindowRestore,
+  FaBookmark,
+  FaUserAlt,
+} from "react-icons/fa";
+
 import Avatar from "components/Avatar";
-import { FaThinkPeaks, FaSearch } from "react-icons/fa";
 
 const HeaderPresneter = ({ user, term, handleSubmit, ...props }) => {
   const popUp = useRef();
@@ -108,6 +119,48 @@ const HeaderPresneter = ({ user, term, handleSubmit, ...props }) => {
           </div>
         </div>
       </HeaderWrapper>
+      <HeaderWrapperBottom>
+        <div className="header__column">
+          <Link to="/">
+            <div className="iconContainer">
+              <FaHome size={21} />
+              <div className="iconTitle title06">홈</div>
+            </div>
+          </Link>
+        </div>
+        <div className="header__column">
+          <Link to="/">
+            <div className="iconContainer">
+              <FaBars size={21} />
+              <div className="iconTitle title06">카테고리</div>
+            </div>
+          </Link>
+        </div>
+        <div className="header__column">
+          <Link to="/">
+            <div className="iconContainer">
+              <FaWindowRestore size={21} />
+              <div className="iconTitle title06">피드</div>
+            </div>
+          </Link>
+        </div>
+        <div className="header__column">
+          <Link to="/">
+            <div className="iconContainer">
+              <FaBookmark size={21} />
+              <div className="iconTitle title06">저장</div>
+            </div>
+          </Link>
+        </div>
+        <div className="header__column">
+          <Link to="/">
+            <div className="iconContainer">
+              <FaUserAlt size={21} />
+              <div className="iconTitle title06">마이</div>
+            </div>
+          </Link>
+        </div>
+      </HeaderWrapperBottom>
     </Header>
   );
 };
@@ -116,9 +169,9 @@ export default HeaderPresneter;
 const Header = styled.header`
   width: 100%;
   height: 64px;
-  position: fixed;
-  top: 0;
-  left: 0;
+  /* position: fixed; */
+  /* top: 0; */
+  /* left: 0; */
   z-index: 10;
   background-color: white;
   border-bottom: ${(props) => props.theme.boxBorder};
@@ -143,6 +196,11 @@ const HeaderWrapper = styled.div`
     flex-grow: 1;
     /* width: 168px; */
     /* margin-left: 10px; */
+    & .logo__title {
+    }
+    ${down("sm")} {
+      display: none;
+    }
   }
 
   & .header__column:nth-child(2) {
@@ -154,6 +212,9 @@ const HeaderWrapper = styled.div`
     flex-grow: 1;
     /* width: 168px; */
     /* margin-left: 10px; */
+    ${down("sm")} {
+      display: none;
+    }
   }
 
   & .logo {
@@ -258,5 +319,43 @@ const HeaderWrapper = styled.div`
         cursor: pointer;
       }
     }
+  }
+`;
+
+const HeaderWrapperBottom = styled.div`
+  width: 100%;
+  /* max-width: 975px; */
+  /* margin: 0px auto; */
+  height: 56px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 2;
+
+  position: fixed;
+  bottom: 0;
+  left: 0;
+
+  border-top:${(props) => props.theme.boxBorder};
+
+  background-color: ${(props) => props.theme.whiteColor};
+  ${up("md")} {
+    display: none;
+  }
+
+  & .header__column {
+    width:48px
+    height: 48px;
+  }
+
+  & .iconContainer {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  & .iconTitle{
+    padding-top:3px;
   }
 `;

@@ -12,7 +12,7 @@ export default createGlobalStyle`
         color: ${(props) => props.theme.blackColor};
         font-size:14px;
         font-family: 'Noto Sans KR', sans-serif;
-        padding-top: 100px;
+        /* padding-top: 100px; */
     }
     a {
         color:${(props) => props.theme.blackColor};
@@ -53,7 +53,11 @@ export default createGlobalStyle`
         font-weight:400;
         opacity:0.4;
     }
-
+    .title06{
+        font-size: 10px;
+        font-weight:400;
+        opacity:1;
+    }
     .black{
         color:#262626;
     }
