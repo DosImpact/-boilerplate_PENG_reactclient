@@ -336,7 +336,7 @@ const HeaderWrapperBottom = styled.div`
   bottom: 0;
   left: 0;
 
-  border-top:${(props) => props.theme.boxBorder};
+  border-top: ${(props) => props.theme.boxBorder};
 
   background-color: ${(props) => props.theme.whiteColor};
   ${up("md")} {
@@ -344,8 +344,11 @@ const HeaderWrapperBottom = styled.div`
   }
 
   & .header__column {
-    width:48px
+    width: 48px;
     height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   & .iconContainer {
@@ -355,7 +358,7 @@ const HeaderWrapperBottom = styled.div`
     align-items: center;
   }
 
-  & .iconTitle{
-    padding-top:3px;
+  & .iconTitle {
+    padding-top: 3px;
   }
 `;
