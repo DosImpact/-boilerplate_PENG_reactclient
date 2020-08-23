@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-function DetailPostPresenter() {
+function DetailPostPresenter({ handleClickLike, formik }) {
   return (
     <OutterContainer>
       <InnerContainer>DetailPost.js</InnerContainer>
