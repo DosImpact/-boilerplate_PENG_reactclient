@@ -19,7 +19,15 @@ export default {
              border-radius:${BORDER_RADIUS};
              background-color:white;
             `,
+
+  /**shadow */
+  boxShadow: `0 1px 5px 0 rgba(21, 21, 21, 0.15);`,
+
+  /*breakpoints */
+  breakpoints: {
+    sm: "576px",
+    md: "768px",
+    lg: "992px",
+    xl: "1200px",
+  },
 };
-/**
- * 색깔 테마들을 전부 빼두는것은 좋은 방법이다.
- */

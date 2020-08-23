@@ -4,20 +4,30 @@ import { gql } from "@apollo/client";
 
  */
 
-export const CREATE_POST = gql`
-  mutation newPost(
-    $caption: String!
-    $location: String!
-    $mytalent: String
-    $youtalent: String
-  ) {
-    upload(
-      caption: $caption
-      location: $location
-      mytalent: $mytalent
-      youtalent: $youtalent
-    ) {
+export const DETAIL_POST = gql`
+  query DetailPost($id: String!) {
+    seeFullPost(id: $id) {
       id
+      location
+      caption
+      mytalent
+      youtalent
+      user {
+        id
+        avatar
+        name
+        email
+      }
+      likeCount
+      commentCount
+      comments {
+        id
+        text
+        user {
+          name
+        }
+      }
+      createdAt
     }
   }
 `;

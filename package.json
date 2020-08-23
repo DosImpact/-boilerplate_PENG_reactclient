@@ -27,6 +27,7 @@
     "redux": "^4.0.5",
     "redux-promise": "^0.6.0",
     "redux-thunk": "^2.3.0",
+    "styled-breakpoints": "^8.1.1",
     "styled-components": "4.4.1",
     "styled-reset": "^4.0.10",
     "yup": "^0.29.3"
