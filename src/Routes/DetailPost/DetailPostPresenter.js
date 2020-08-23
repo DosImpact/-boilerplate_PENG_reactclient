@@ -1,10 +1,26 @@
 import React from "react";
 import styled from "styled-components";
 
-function DetailPostPresenter({ handleClickLike, formik }) {
+import Loader from "components/Loader";
+import Error from "components/Error";
+
+function DetailPostPresenter({
+  handleClickLike,
+  formik,
+  data,
+  loading,
+  error,
+}) {
   return (
     <OutterContainer>
-      <InnerContainer>DetailPost.js</InnerContainer>
+      <InnerContainer>
+        {loading && !error && <Loader />}
+        {!loading && error && <Error />}
+        <pre>
+          {JSON.stringify(data, null, 2)}
+          {JSON.stringify(formik, null, 2)}
+        </pre>
+      </InnerContainer>
     </OutterContainer>
   );
 }

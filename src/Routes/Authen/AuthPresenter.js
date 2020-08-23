@@ -39,10 +39,10 @@ function Auth({
     values,
     handleChange,
     handleBlur,
-    handleReset,
+    // handleReset,
     errors,
     touched,
-    dirty,
+    // dirty,
     isSubmitting,
   } = formik;
   return (

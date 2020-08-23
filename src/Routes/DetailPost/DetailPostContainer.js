@@ -37,6 +37,7 @@ function DetailPostContainer() {
     history.push(`post/${id}`);
     // window.location.reload();
   };
+  const _handle
   // const handleClickSaved = ()=>{}
 
   const formik = useFormik({
@@ -53,7 +54,13 @@ function DetailPostContainer() {
   });
 
   return (
-    <DetailPostPresenter handleClickLike={handleClickLike} formik={formik} />
+    <DetailPostPresenter
+      handleClickLike={handleClickLike}
+      formik={formik}
+      data={data}
+      loading={loading}
+      error={error}
+    />
   );
 }
 

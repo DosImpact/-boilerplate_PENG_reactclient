@@ -9,7 +9,7 @@ import Loader from "../../components/Loader";
 import Avatar from "../../components/Avatar";
 import FatText from "../../components/FatText";
 import FollowButton from "../../components/FollowButton";
-import SquarePost from "../../components/SquarePost";
+// import SquarePost from "../../components/SquarePost";
 import Button from "../../components/Button";
 
 export default ({ loading, data, handleLogOut, path, error }) => {
@@ -28,10 +28,10 @@ export default ({ loading, data, handleLogOut, path, error }) => {
         avatar,
         name,
         email,
-        fullName,
+        // fullName,
         isFollowing,
         isSelf,
-        bio,
+        // bio,
         followingCount,
         followersCount,
         postsCount,
