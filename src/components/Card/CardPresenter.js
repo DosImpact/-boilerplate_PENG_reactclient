@@ -52,11 +52,17 @@ const Container = styled.div`
   width: 500px;
   height: 300px;
   ${(props) => (props.size === "sm" ? `height:200px;` : ``)};
-  /* background-color: ${(props) => props.theme.lightGreyColor}; */
   border-radius: 6px;
   padding: 30px;
   border:${(props) => props.theme.boxBorder};
   position:relative;
+  box-shadow:${(props) => props.theme.boxShadow};
+  transition: all 0.2s ease-in-out;
+  :hover {
+  /* background-color: ${(props) => props.theme.lightGreyColor}; */
+    /* box-shadow:${(props) => props.theme.boxShadow}; */
+  }
+
   & .card__image{
      position:absolute;
      width: 500px;

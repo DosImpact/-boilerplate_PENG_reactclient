@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import FatText from "../FatText";
-import Avatar from "../Avatar";
-import { HeartFull, HeartEmpty, Comment as CommentIcon } from "../Icons";
+import FatText from "../../FatText";
+import Avatar from "../../Avatar";
+import { HeartFull, HeartEmpty, Comment as CommentIcon } from "../../Icons";
 import TextareaAutosize from "react-autosize-textarea";
 import { Link } from "react-router-dom";
 

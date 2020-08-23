@@ -3,7 +3,7 @@ import Helmet from "react-helmet";
 import styled from "styled-components";
 import { useQuery, gql } from "@apollo/client";
 import Loader from "../components/Loader";
-import Post from "../components/Post";
+import Post from "../components/_deprecated/Post";
 
 const FEED_QUERY = gql`
   query SEE_FEED {

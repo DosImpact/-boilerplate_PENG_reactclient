@@ -37,7 +37,6 @@ function DetailPostContainer() {
     history.push(`post/${id}`);
     // window.location.reload();
   };
-  const _handle
   // const handleClickSaved = ()=>{}
 
   const formik = useFormik({
