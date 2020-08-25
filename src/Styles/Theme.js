@@ -10,15 +10,16 @@ export default {
   darkGreyColor: "#999",
   lightGreyColor: "#c7c7c7",
   redColor: "#ED4956",
-  blueColor: "#3C82FF",
   darkBlueColor: "#003569",
 
   boxBorder: "1px solid #e6e6e6",
   borderRadius: "4px",
   whiteBox: `border:${BOX_BORDER};
-             border-radius:${BORDER_RADIUS};
-             background-color:white;
-            `,
+  border-radius:${BORDER_RADIUS};
+  background-color:white;
+  `,
+  /**custome Color */
+  blueColor: "#3C82FF",
 
   /**shadow */
   boxShadow: `0 1px 5px 0 rgba(21, 21, 21, 0.15);`,

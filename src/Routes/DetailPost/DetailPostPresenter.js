@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
+import Post from "components/Post";
 import Loader from "components/Loader";
 import Error from "components/Error";
 
@@ -11,15 +12,13 @@ function DetailPostPresenter({
   loading,
   error,
 }) {
+  console.log("DetailPostPresenter", data);
   return (
     <OutterContainer>
       <InnerContainer>
         {loading && !error && <Loader />}
         {!loading && error && <Error />}
-        <pre>
-          {JSON.stringify(data, null, 2)}
-          {JSON.stringify(formik, null, 2)}
-        </pre>
+        {!loading && !error && <Post {...data?.seeFullPost} />}
       </InnerContainer>
     </OutterContainer>
   );

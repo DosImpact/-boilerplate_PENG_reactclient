@@ -12,6 +12,7 @@ export const DETAIL_POST = gql`
       caption
       mytalent
       youtalent
+      content
       user {
         id
         avatar
@@ -19,6 +20,7 @@ export const DETAIL_POST = gql`
         email
       }
       likeCount
+      isLiked
       commentCount
       comments {
         id
@@ -26,6 +28,7 @@ export const DETAIL_POST = gql`
         user {
           name
         }
+        createdAt
       }
       createdAt
     }
