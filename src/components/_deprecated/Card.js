@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
+import { Link } from "react-router-dom";
 import Avatar from "components/Avatar";
 
 function Card({ className, ...props }) {
@@ -9,27 +10,29 @@ function Card({ className, ...props }) {
 
   return (
     <Container className={className}>
-      <div className="card__wrapper">
-        <div className="card__header">
-          <div className="header__column">
-            <div className="header__profile">
-              <Avatar className="header__image" url={user_avatar} />
+      <Link to={`/post/${id}`} style={{ cursor: "pointer" }}>
+        <div className="card__wrapper">
+          <div className="card__header">
+            <div className="header__column">
+              <div className="header__profile">
+                <Avatar className="header__image" url={user_avatar} />
+              </div>
+            </div>
+
+            <div className="header__column">
+              <div className="header__title title02">{caption}</div>
+              <div className="header__title title04">{location}</div>
             </div>
           </div>
 
-          <div className="header__column">
-            <div className="header__title title02">{caption}</div>
-            <div className="header__title title04">{location}</div>
+          <div className="card__content">
+            <div className="content__">
+              <div className="content__01 title01">{mytalent}</div>
+              <div className="content__02 title01">{youtalent}</div>
+            </div>
           </div>
         </div>
-
-        <div className="card__content">
-          <div className="content__">
-            <div className="content__01 title01">{mytalent}</div>
-            <div className="content__02 title01">{youtalent}</div>
-          </div>
-        </div>
-      </div>
+      </Link>
     </Container>
   );
 }

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 import { FaRegComment, FaRegHeart, FaRegBookmark } from "react-icons/fa";
 
+import Input from "components/Input";
 import Avatar from "components/Avatar";
 import Card from "components/Card/CardContainer";
 
@@ -51,6 +52,11 @@ export default ({
         </div>
       </div>
       <div className="commentContainer">
+        <div className="commentForm">
+          <form>
+            <Input />
+          </form>
+        </div>
         <div className="commentList">
           {comments?.map((e, idx) => (
             <div className="commentItem" key={idx}>

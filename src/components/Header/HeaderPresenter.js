@@ -8,8 +8,8 @@ import {
   FaSearch,
   FaBars,
   FaHome,
-  FaWindowRestore,
-  FaBookmark,
+  FaRegWindowRestore,
+  FaRegBookmark,
   FaUserAlt,
 } from "react-icons/fa";
 
@@ -139,7 +139,7 @@ const HeaderPresneter = ({ user, term, handleSubmit, ...props }) => {
         <div className="header__column">
           <Link to="/">
             <div className="iconContainer">
-              <FaWindowRestore size={21} />
+              <FaRegWindowRestore size={21} />
               <div className="iconTitle title06">피드</div>
             </div>
           </Link>
@@ -147,7 +147,7 @@ const HeaderPresneter = ({ user, term, handleSubmit, ...props }) => {
         <div className="header__column">
           <Link to="/">
             <div className="iconContainer">
-              <FaBookmark size={21} />
+              <FaRegBookmark size={21} />
               <div className="iconTitle title06">저장</div>
             </div>
           </Link>

@@ -57,7 +57,7 @@ const PostContainer = ({
     }),
   });
 
-  const toggleLike = () => {
+  const handleToggleLike = () => {
     toggleLikeMutation();
     if (isLikedS === true) {
       setIsLiked(false);
@@ -78,10 +78,13 @@ const PostContainer = ({
       youtalent={youtalent}
       content={content}
       user={user}
-      likeCount={likeCount}
       commentCount={commentCount}
       comments={comments}
       createdAt={createdAt}
+      isLiked={isLikedS}
+      likeCount={likeCountS}
+      handleToggleLike={handleToggleLike}
+      formik={formik}
     />
   );
 };
