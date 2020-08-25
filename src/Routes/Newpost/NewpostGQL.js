@@ -10,12 +10,14 @@ export const CREATE_POST = gql`
     $location: String!
     $mytalent: String!
     $youtalent: String!
+    $content: String
   ) {
     upload(
       caption: $caption
       location: $location
       mytalent: $mytalent
       youtalent: $youtalent
+      content: $content
     ) {
       id
     }

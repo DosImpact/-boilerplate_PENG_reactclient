@@ -2,7 +2,12 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-import { FaRegComment, FaRegHeart, FaRegBookmark } from "react-icons/fa";
+import {
+  FaRegComment,
+  FaRegHeart,
+  FaHeart,
+  FaRegBookmark,
+} from "react-icons/fa";
 
 import Input from "components/Input";
 import Avatar from "components/Avatar";
@@ -17,10 +22,13 @@ export default ({
   youtalent,
   content,
   user,
-  likeCount,
   commentCount,
   comments,
   createdAt,
+  isLiked,
+  likeCount,
+  handleToggleLike,
+  formik,
 }) => {
   return (
     <Wrapper className={className}>
@@ -39,22 +47,45 @@ export default ({
         <div className="footer">
           <div className="item">
             <FaRegComment className="icon" />
+            <span className="count">{commentCount}</span>
+          </div>
+          <div
+            className="item"
+            onClick={() => handleToggleLike()}
+            style={{ cursor: "pointer" }}
+          >
+            {isLiked ? (
+              <FaHeart className="icon" />
+            ) : (
+              <FaRegHeart className="icon" />
+            )}
+
             <span className="count">{likeCount}</span>
           </div>
           <div className="item">
-            <FaRegHeart className="icon" />
-            <span className="count">{commentCount}</span>
-          </div>
-          <div className="item">
             <FaRegBookmark className="icon" />
-            <span className="count">{commentCount}</span>
+            <span className="count">0</span>
           </div>
         </div>
       </div>
       <div className="commentContainer">
         <div className="commentForm">
-          <form>
-            <Input />
+          <form onSubmit={formik.handleSubmit}>
+             <label htmlFor="comment">댓글</label>
+            <Input
+              type="text"
+              id="comment"
+              value={formik.values.comment}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+            />
+                    
+            {formik.errors.comment && formik.touched.comment && (
+              <div>{formik.errors.comment}</div>
+            )}
+            <button type="submit" disabled={formik.isSubmitting}>
+              Submit         
+            </button>
           </form>
         </div>
         <div className="commentList">

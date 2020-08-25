@@ -26,7 +26,10 @@ export const DETAIL_POST = gql`
         id
         text
         user {
+          id
+          avatar
           name
+          email
         }
         createdAt
       }

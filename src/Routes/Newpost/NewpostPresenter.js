@@ -39,6 +39,7 @@ function NewpostPresenter({ createPost, _gotoHome }) {
                   location: data.location,
                   mytalent: data.myTalent,
                   youtalent: data.youTalent,
+                  content: data.content,
                 },
               });
 
@@ -57,6 +58,7 @@ function NewpostPresenter({ createPost, _gotoHome }) {
             location: "",
             myTalent: "",
             youTalent: "",
+            content: "",
           }}
           validationSchema={Yup.object().shape({
             // email: Yup.string().email().required("이메일 입력 필수"),
@@ -64,6 +66,7 @@ function NewpostPresenter({ createPost, _gotoHome }) {
             location: Yup.string().required("장소 필수"),
             myTalent: Yup.string().required("나의 재능 필수"),
             youTalent: Yup.string().required("교환받을 재능 필수"),
+            content: Yup.string().required("내용을 적어주세요."),
           })}
         >
           {(props) => {
@@ -140,6 +143,21 @@ function NewpostPresenter({ createPost, _gotoHome }) {
                 ></input>
                 {errors.youTalent && touched.youTalent && (
                   <div className="form__feedback">{errors.youTalent}</div>
+                )}
+
+                <label className="form__label" htmlFor="content">
+                  content
+                </label>
+                <input
+                  className="form__input"
+                  type="text"
+                  id="content"
+                  value={values.content}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                ></input>
+                {errors.content && touched.content && (
+                  <div className="form__feedback">{errors.content}</div>
                 )}
 
                 <button

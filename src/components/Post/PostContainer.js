@@ -41,16 +41,21 @@ const PostContainer = ({
 
   const formik = useFormik({
     initialValues: { comment: "" },
-    onSubmit: (data, { setSubmitting }) => {
+    onSubmit: async (data, { setSubmitting }) => {
       setSubmitting(true);
-      console.log(data);
-      // addCommentMutation({
-      //   variables: {
-      //     postId: id,
-      //     text: data.comment,
-      //   },
-      // });
+      console.log(" PostContainer onSubmit", data);
+      try {
+        await addCommentMutation({
+          variables: {
+            postId: id,
+            text: data.comment,
+          },
+        });
+      } catch (error) {
+        console.log(error);
+      }
       setSubmitting(false);
+      window.location.reload();
     },
     validationSchema: Yup.object().shape({
       comment: Yup.string().required("required"),

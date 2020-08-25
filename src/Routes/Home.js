@@ -26,7 +26,7 @@ function Home(props) {
   const { data, loading, error } = useQuery(getAllPost, {
     // fetchPolicy: "network-only",
   });
-  console.log("Home rendering", data, loading, error);
+  // console.log("Home rendering", data, loading, error);
   if (error) {
     props.history.push("/");
   }
