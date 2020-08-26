@@ -19,162 +19,109 @@ const DisplayState = (props) => (
   </div>
 );
 
-function NewpostPresenter({ createPost, _gotoHome }) {
+function NewpostPresenter({ formik, createPost, _gotoHome }) {
+  const {
+    values,
+    touched,
+    errors,
+    dirty,
+    isSubmitting,
+    handleChange,
+    handleBlur,
+    handleSubmit,
+    handleReset,
+  } = formik;
   return (
     <OutterContainer>
       <InnerContainer>
-        <h1>새로운 글쓰기</h1>
-        <Formik
-          onSubmit={async (data, { setSubmitting }) => {
-            // async 로 데이터를 주고 받는동안에는 여러번 form제출 방치 ,async data POST
-            setSubmitting(true);
+        <form onSubmit={handleSubmit}>
+          <label className="form__label" htmlFor="title">
+            title
+          </label>
+          <input
+            className="form__input"
+            type="text"
+            id="title"
+            value={values.title}
+            onChange={handleChange}
+            onBlur={handleBlur}
+          ></input>
+          {errors.title && touched.title && (
+            <div className="form__feedback">{errors.title}</div>
+          )}
 
-            // final Data from forkmik
-            console.log(data);
+          <label className="form__label" htmlFor="location">
+            location
+          </label>
+          <input
+            className="form__input"
+            type="text"
+            id="location"
+            value={values.location}
+            onChange={handleChange}
+            onBlur={handleBlur}
+          ></input>
+          {errors.location && touched.location && (
+            <div className="form__feedback">{errors.location}</div>
+          )}
 
-            try {
-              const result = await createPost({
-                variables: {
-                  caption: data.title,
-                  location: data.location,
-                  mytalent: data.myTalent,
-                  youtalent: data.youTalent,
-                  content: data.content,
-                },
-              });
+          <label className="form__label" htmlFor="myTalent">
+            myTalent
+          </label>
+          <input
+            className="form__input"
+            type="text"
+            id="myTalent"
+            value={values.myTalent}
+            onChange={handleChange}
+            onBlur={handleBlur}
+          ></input>
+          {errors.myTalent && touched.myTalent && (
+            <div className="form__feedback">{errors.myTalent}</div>
+          )}
 
-              console.log("upload post result ", result);
-              toast.success("글쓰기 성공");
-            } catch (error) {
-              console.error("newpost Container error");
-              console.dir(error);
-              toast.error("글쓰기 실패");
-            }
-            setSubmitting(false);
-            _gotoHome();
-          }}
-          initialValues={{
-            title: "",
-            location: "",
-            myTalent: "",
-            youTalent: "",
-            content: "",
-          }}
-          validationSchema={Yup.object().shape({
-            // email: Yup.string().email().required("이메일 입력 필수"),
-            title: Yup.string().required("제목 필수"),
-            location: Yup.string().required("장소 필수"),
-            myTalent: Yup.string().required("나의 재능 필수"),
-            youTalent: Yup.string().required("교환받을 재능 필수"),
-            content: Yup.string().required("내용을 적어주세요."),
-          })}
-        >
-          {(props) => {
-            // console.log(props);
-            const {
-              values,
-              touched,
-              errors,
-              dirty,
-              isSubmitting,
-              handleChange,
-              handleBlur,
-              handleSubmit,
-              handleReset,
-            } = props;
+          <label className="form__label" htmlFor="youTalent">
+            youTalent
+          </label>
+          <input
+            className="form__input"
+            type="text"
+            id="youTalent"
+            value={values.youTalent}
+            onChange={handleChange}
+            onBlur={handleBlur}
+          ></input>
+          {errors.youTalent && touched.youTalent && (
+            <div className="form__feedback">{errors.youTalent}</div>
+          )}
 
-            return (
-              <form onSubmit={handleSubmit}>
-                <label className="form__label" htmlFor="title">
-                  title
-                </label>
-                <input
-                  className="form__input"
-                  type="text"
-                  id="title"
-                  value={values.title}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                ></input>
-                {errors.title && touched.title && (
-                  <div className="form__feedback">{errors.title}</div>
-                )}
+          <label className="form__label" htmlFor="content">
+            content
+          </label>
+          <input
+            className="form__input"
+            type="text"
+            id="content"
+            value={values.content}
+            onChange={handleChange}
+            onBlur={handleBlur}
+          ></input>
+          {errors.content && touched.content && (
+            <div className="form__feedback">{errors.content}</div>
+          )}
 
-                <label className="form__label" htmlFor="location">
-                  location
-                </label>
-                <input
-                  className="form__input"
-                  type="text"
-                  id="location"
-                  value={values.location}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                ></input>
-                {errors.location && touched.location && (
-                  <div className="form__feedback">{errors.location}</div>
-                )}
-
-                <label className="form__label" htmlFor="myTalent">
-                  myTalent
-                </label>
-                <input
-                  className="form__input"
-                  type="text"
-                  id="myTalent"
-                  value={values.myTalent}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                ></input>
-                {errors.myTalent && touched.myTalent && (
-                  <div className="form__feedback">{errors.myTalent}</div>
-                )}
-
-                <label className="form__label" htmlFor="youTalent">
-                  youTalent
-                </label>
-                <input
-                  className="form__input"
-                  type="text"
-                  id="youTalent"
-                  value={values.youTalent}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                ></input>
-                {errors.youTalent && touched.youTalent && (
-                  <div className="form__feedback">{errors.youTalent}</div>
-                )}
-
-                <label className="form__label" htmlFor="content">
-                  content
-                </label>
-                <input
-                  className="form__input"
-                  type="text"
-                  id="content"
-                  value={values.content}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                ></input>
-                {errors.content && touched.content && (
-                  <div className="form__feedback">{errors.content}</div>
-                )}
-
-                <button
-                  type="button"
-                  onClick={handleReset}
-                  disabled={!dirty || isSubmitting}
-                >
-                  Reset
-                </button>
-                <button type="submit" disabled={isSubmitting}>
-                  Submit
-                </button>
-                <DisplayState {...props} />
-              </form>
-            );
-          }}
-        </Formik>
+          <button
+            type="button"
+            onClick={handleReset}
+            disabled={!dirty || isSubmitting}
+          >
+            Reset
+          </button>
+          <button type="submit" disabled={isSubmitting}>
+            Submit
+          </button>
+          <DisplayState {...formik} />
+        </form>
       </InnerContainer>
     </OutterContainer>
   );
