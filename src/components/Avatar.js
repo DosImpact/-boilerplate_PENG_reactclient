@@ -10,6 +10,8 @@ const getSize = (size) => {
     number = 50;
   } else if (size === "lg") {
     number = 150;
+  } else if (size === "20") {
+    number = 20;
   }
   return `
         width:${number}px;
@@ -20,8 +22,8 @@ const getSize = (size) => {
 const Container = styled.div`
   ${(props) => getSize(props.size)}
   background-image:url(${(props) => props.url});
-  background-size:cover;
-  border-radius:50%;
+  background-size: cover;
+  border-radius: 50%;
 `;
 
 const DefaultImage =

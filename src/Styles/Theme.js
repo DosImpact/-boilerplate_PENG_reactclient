@@ -12,8 +12,6 @@ export default {
   redColor: "#ED4956",
   darkBlueColor: "#003569",
 
-  boxBorder: "1px solid #e6e6e6",
-  borderRadius: "4px",
   whiteBox: `border:${BOX_BORDER};
   border-radius:${BORDER_RADIUS};
   background-color:white;
@@ -21,6 +19,9 @@ export default {
   /**custome Color */
   blueColor: "#3C82FF",
 
+  /**Box */
+  boxBorder: "1px solid #e6e6e6",
+  borderRadius: "4px",
   /**shadow */
   boxShadow: `0 1px 5px 0 rgba(21, 21, 21, 0.15);`,
 

@@ -45,6 +45,7 @@ export default ({
           handleToggleLike={handleToggleLike}
           isLiked={isLiked}
           likeCount={likeCount}
+          createdAt={createdAt}
         />
       </div>
       <div className="commentContainer">
@@ -85,23 +86,10 @@ const Wrapper = styled.div`
     justify-content: space-between;
     padding-bottom: 15px;
     & .content {
+      min-height: 50px;
     }
 
     & .footer {
-      min-height: 40px;
-      display: flex;
-      flex-flow: row nowrap;
-      justify-content: flex-end;
-      align-items: flex-end;
-      & .item {
-        margin-left: 5px;
-        & .icon {
-          color: ${(props) => props.theme.blueColor};
-          margin-right: 1px;
-        }
-        & .count {
-        }
-      }
     }
   }
   & .commentContainer {
