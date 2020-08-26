@@ -6,7 +6,7 @@ import Avatar from "components/Avatar";
 
 function CommentItem({ className, user, text, createdAt }) {
   return (
-    <div className={className}>
+    <Wrapper className={className}>
       <div className="commentRow">
         <Link to={`/user/${user.name || "dummy"}`}>
           <Avatar size="sm" url={user.avatar} />{" "}
@@ -15,8 +15,12 @@ function CommentItem({ className, user, text, createdAt }) {
       </div>
       <div className="commentRow">{text}</div>
       <div className="commentRow">{createdAt.substr(0, 10)}</div>
-    </div>
+    </Wrapper>
   );
 }
 
 export default CommentItem;
+
+const Wrapper = styled.div`
+  width: 100%;
+`;

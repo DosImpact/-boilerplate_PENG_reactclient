@@ -1,20 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
-
-import {
-  FaRegComment,
-  FaRegHeart,
-  FaHeart,
-  FaRegBookmark,
-} from "react-icons/fa";
 
 import Input from "components/Input";
-import Avatar from "components/Avatar";
 import Card from "components/Card/CardContainer";
 
 import CommentItem from "./CommentItem";
 import PostProfile from "./PostProfile";
+import CommentFrom from "./CommentFrom";
 
 export default ({
   className,
@@ -56,25 +48,6 @@ export default ({
         />
       </div>
       <div className="commentContainer">
-        <div className="commentForm">
-          <form onSubmit={formik.handleSubmit}>
-             <label htmlFor="comment">댓글</label>
-            <Input
-              type="text"
-              id="comment"
-              value={formik.values.comment}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-            />
-                    
-            {formik.errors.comment && formik.touched.comment && (
-              <div>{formik.errors.comment}</div>
-            )}
-            <button type="submit" disabled={formik.isSubmitting}>
-              Submit         
-            </button>
-          </form>
-        </div>
         <div className="commentList">
           {comments?.map((e, idx) => (
             <CommentItem
@@ -85,6 +58,7 @@ export default ({
             />
           ))}
         </div>
+        <CommentFrom className="commentForm" formik={formik} />
       </div>
     </Wrapper>
   );
@@ -132,7 +106,9 @@ const Wrapper = styled.div`
   }
   & .commentContainer {
     min-height: 10px;
+    padding: 0px;
     & .commentList {
+      padding: 30px;
     }
     & .commentItem {
       min-height: 50px;
