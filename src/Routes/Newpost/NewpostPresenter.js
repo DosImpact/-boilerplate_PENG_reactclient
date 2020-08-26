@@ -5,6 +5,8 @@ import { toast } from "react-toastify";
 import { Formik } from "formik";
 import * as Yup from "yup";
 
+import TextareaAutosize from "react-autosize-textarea";
+
 const DisplayState = (props) => (
   <div>
     <pre
@@ -98,14 +100,14 @@ function NewpostPresenter({ formik, createPost, _gotoHome }) {
           <label className="form__label" htmlFor="content">
             content
           </label>
-          <input
+          <TextareaAutosize
             className="form__input"
             type="text"
             id="content"
             value={values.content}
             onChange={handleChange}
             onBlur={handleBlur}
-          ></input>
+          ></TextareaAutosize>
           {errors.content && touched.content && (
             <div className="form__feedback">{errors.content}</div>
           )}
