@@ -13,6 +13,9 @@ import Input from "components/Input";
 import Avatar from "components/Avatar";
 import Card from "components/Card/CardContainer";
 
+import CommentItem from "./CommentItem";
+import PostProfile from "./PostProfile";
+
 export default ({
   className,
   id,
@@ -44,29 +47,13 @@ export default ({
       />
       <div className="DetailContainer">
         <div className="content">{content}</div>
-        <div className="footer">
-          <div className="item">
-            <FaRegComment className="icon" />
-            <span className="count">{commentCount}</span>
-          </div>
-          <div
-            className="item"
-            onClick={() => handleToggleLike()}
-            style={{ cursor: "pointer" }}
-          >
-            {isLiked ? (
-              <FaHeart className="icon" />
-            ) : (
-              <FaRegHeart className="icon" />
-            )}
-
-            <span className="count">{likeCount}</span>
-          </div>
-          <div className="item">
-            <FaRegBookmark className="icon" />
-            <span className="count">0</span>
-          </div>
-        </div>
+        <PostProfile
+          className="footer"
+          commentCount={commentCount}
+          handleToggleLike={handleToggleLike}
+          isLiked={isLiked}
+          likeCount={likeCount}
+        />
       </div>
       <div className="commentContainer">
         <div className="commentForm">
@@ -90,16 +77,12 @@ export default ({
         </div>
         <div className="commentList">
           {comments?.map((e, idx) => (
-            <div className="commentItem" key={idx}>
-              <div className="commentRow">
-                <Link to={`/user/${e?.user.name || "dummy"}`}>
-                  <Avatar size="sm" url={e.user.avatar} />{" "}
-                </Link>
-                <span>{e?.user.name}</span>
-              </div>
-              <div className="commentRow">{e?.text}</div>
-              <div className="commentRow">{e?.createdAt.substr(0, 10)}</div>
-            </div>
+            <CommentItem
+              className="commentItem"
+              user={e.user}
+              text={e.text}
+              createdAt={e.createdAt}
+            />
           ))}
         </div>
       </div>
@@ -126,6 +109,7 @@ const Wrapper = styled.div`
     display: flex;
     flex-flow: column wrap;
     justify-content: space-between;
+    padding-bottom: 15px;
     & .content {
     }
 
@@ -134,7 +118,7 @@ const Wrapper = styled.div`
       display: flex;
       flex-flow: row nowrap;
       justify-content: flex-end;
-      align-items: center;
+      align-items: flex-end;
       & .item {
         margin-left: 5px;
         & .icon {
