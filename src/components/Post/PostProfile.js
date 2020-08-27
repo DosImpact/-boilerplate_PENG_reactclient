@@ -7,6 +7,8 @@ import {
   FaRegBookmark,
 } from "react-icons/fa";
 
+import { useSelector } from "react-redux";
+
 function PostProfile({
   className,
   commentCount,
@@ -14,7 +16,12 @@ function PostProfile({
   isLiked,
   likeCount,
   createdAt,
+  handleDeletePost,
+  userId,
 }) {
+  const user = useSelector((state) => state.log.toJS());
+  const loggedUserId = user.userData.id;
+  // console.log("loggedUserId", loggedUserId, "userId", userId);
   return (
     <Wrapper className={className}>
       <div className="column">
@@ -42,6 +49,15 @@ function PostProfile({
       </div>
       <div className="column">
         <div className="item">{createdAt.substr(0, 10)}</div>
+        {loggedUserId === userId ? (
+          <div
+            className="item"
+            style={{ cursor: "pointer" }}
+            onClick={() => handleDeletePost()}
+          >
+            삭제
+          </div>
+        ) : null}
       </div>
     </Wrapper>
   );

@@ -24,6 +24,7 @@ export default ({
   likeCount,
   handleToggleLike,
   formik,
+  handleDeletePost,
 }) => {
   return (
     <Wrapper className={className}>
@@ -43,9 +44,11 @@ export default ({
           className="footer"
           commentCount={commentCount}
           handleToggleLike={handleToggleLike}
+          handleDeletePost={handleDeletePost}
           isLiked={isLiked}
           likeCount={likeCount}
           createdAt={createdAt}
+          userId={user.id}
         />
       </div>
       <div className="commentContainer">

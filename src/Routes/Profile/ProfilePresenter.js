@@ -79,16 +79,16 @@ export default ({ loading, data, handleLogOut, path, error }) => {
             </div>
           </Header>
           {/* <Posts>
-          {posts &&
-            posts.map((post) => (
-              <SquarePost
-                key={post.id}
-                likeCount={post.likeCount}
-                commentCount={post.commentCount}
-                file={post.files[0]}
-              />
-            ))}
-        </Posts> */}
+            {posts &&
+              posts.map((post) => (
+                <SquarePost
+                  key={post.id}
+                  likeCount={post.likeCount}
+                  commentCount={post.commentCount}
+                  file={post.files[0]}
+                />
+              ))}
+          </Posts> */}
           <Select name={name} />
           <Router path={path} />
         </InnerWrapper>

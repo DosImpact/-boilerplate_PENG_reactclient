@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 // import PropTypes from "prop-types";
 // import useInput from "../../../Hooks/useInput";
+import { useHistory } from "react-router-dom";
 import PostPresenter from "./PostPresenter";
 import { useMutation } from "@apollo/client";
-import { TOGGLE_LIKE, ADD_COMMENT } from "./PostGQL";
+import { TOGGLE_LIKE, ADD_COMMENT, DELETE_POST } from "./PostGQL";
 // import { toast } from "react-toastify";
 
 import * as Yup from "yup";
@@ -28,6 +29,7 @@ const PostContainer = ({
   comments,
   createdAt,
 }) => {
+  const history = useHistory();
   const [isLikedS, setIsLiked] = useState(isLiked);
   const [likeCountS, setLikeCount] = useState(likeCount);
   // const [currentItem, setCurrentItem] = useState(0);
@@ -38,7 +40,9 @@ const PostContainer = ({
     variables: { postId: id },
   });
   const [addCommentMutation] = useMutation(ADD_COMMENT);
-
+  const [deletePostMutation] = useMutation(DELETE_POST, {
+    variables: { postId: id, action: "DELETE" },
+  });
   const formik = useFormik({
     initialValues: { comment: "" },
     onSubmit: async (data, { setSubmitting }) => {
@@ -72,6 +76,15 @@ const PostContainer = ({
       setLikeCount(likeCountS + 1);
     }
   };
+  const handleDeletePost = async () => {
+    try {
+      await deletePostMutation();
+    } catch (error) {
+      console.log(error);
+      console.log(error.message);
+    }
+    history.push("/");
+  };
 
   return (
     <PostPresenter
@@ -90,6 +103,7 @@ const PostContainer = ({
       likeCount={likeCountS}
       handleToggleLike={handleToggleLike}
       formik={formik}
+      handleDeletePost={handleDeletePost}
     />
   );
 };

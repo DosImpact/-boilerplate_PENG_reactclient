@@ -19,3 +19,10 @@ export const ADD_COMMENT = gql`
     }
   }
 `;
+export const DELETE_POST = gql`
+  mutation deletePost($action: ACTIONS!, $postId: String!) {
+    editPost(action: $action, id: $postId) {
+      id
+    }
+  }
+`;

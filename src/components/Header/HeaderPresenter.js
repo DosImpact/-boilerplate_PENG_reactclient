@@ -15,7 +15,14 @@ import {
 
 import Avatar from "components/Avatar";
 
-const HeaderPresneter = ({ user, term, handleSubmit, ...props }) => {
+const HeaderPresneter = ({
+  user,
+  term,
+  handleSubmit,
+  handleLogOut,
+  handleLogIn,
+  ...props
+}) => {
   const popUp = useRef();
   const popUpFull = useRef();
 
@@ -109,7 +116,18 @@ const HeaderPresneter = ({ user, term, handleSubmit, ...props }) => {
                         <div>찜한 포스트</div>
                       </li>
                       <li className="header__item">
-                        <div> {user.isLoggedIn ? "로그아웃" : "로그인"}</div>
+                        {user.isLoggedIn ? (
+                          <div
+                            onClick={() => {
+                              handlePopUp();
+                              handleLogOut();
+                            }}
+                          >
+                            로그아웃
+                          </div>
+                        ) : (
+                          <div onClick={() => handleLogIn()}>로그인</div>
+                        )}
                       </li>
                     </ul>
                   </div>

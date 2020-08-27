@@ -18,10 +18,11 @@ export default () => {
 
   const { data, loading, error } = useQuery(GET_USER, {
     variables: { name },
+    fetchPolicy: "network-only",
   });
 
   const handleLogOut = () => {
-    console.log("LogOut");
+    // console.log("LogOut");
     dispatch(logOut());
     history.push("/");
   };
