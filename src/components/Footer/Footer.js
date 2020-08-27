@@ -59,7 +59,7 @@ function Footer() {
 
           <hr className="title05" />
 
-          <div className="footer__info__column">
+          {/* <div className="footer__info__column">
             <div className="title01">Talent Trade</div>
             <div className="title04">
               ㈜재능무역 {new Date().getFullYear()} &copy; | 사업자 등록번호 :
@@ -86,6 +86,7 @@ function Footer() {
               확인
             </div>
           </div>
+           */}
           <div className="footer__usages">
             {termsUsages.map((e, idx) => (
               <div className="footer__usages__items title04" key={idx}>
