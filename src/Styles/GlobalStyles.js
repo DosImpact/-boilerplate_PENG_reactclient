@@ -61,10 +61,13 @@ export default createGlobalStyle`
     }
     .TypoContent{
         min-height: 50px;
-      word-break: break-all;
+      width: 100%;
       letter-spacing: 0px;
       font-weight: 300;
       line-height: 20px;
+      overflow: auto;
+      word-break: break-all;
+      white-space: pre-wrap;
     }
 
     .error{
