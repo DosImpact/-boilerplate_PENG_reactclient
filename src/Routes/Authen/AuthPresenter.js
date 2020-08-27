@@ -80,7 +80,7 @@ function Auth({
                   </Button>
                 </form>
 
-                <SNSLogin />
+                {/* <SNSLogin /> */}
               </div>
             )}
             {action === actionType.confirm && (

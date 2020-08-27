@@ -17,7 +17,7 @@ export const logOut = () => {
   };
 };
 
-export const logUserSave = (token) => {
+export const logUserSave = async (token) => {
   if (!token) {
     return { type: null };
   }
@@ -44,7 +44,7 @@ export const logUserSave = (token) => {
     data: data,
   };
 
-  const request = axios(config)
+  const request = await axios(config)
     .then(function (response) {
       return response.data.data.me;
     })

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
+import { useHistory } from "react-router-dom";
 // import useInput from "Hooks/useInput";
 import { toast } from "react-toastify";
 import { useFormik } from "formik";
@@ -14,7 +15,8 @@ import {
 
 import AuthPresenter from "./AuthPresenter";
 
-function Auth(props) {
+function Auth() {
+  const history = useHistory();
   const dispatch = useDispatch();
   const actionType = { login: "login", signUp: "signUp", confirm: "confirm" };
   const [action, setAction] = useState(actionType.login);
@@ -127,9 +129,9 @@ function Auth(props) {
         },
       });
       dispatch(actionLogin(confirmSecretResult));
-      dispatch(acionLogUserSave(confirmSecretResult));
+      await dispatch(acionLogUserSave(confirmSecretResult));
       toast.success("로그인 성공 환영합니다!");
-      props.history.push("/");
+      history.push("/");
     } catch (error) {
       console.log(error);
       toast.error("로그인 비밀번호를 다시 확인해 주세요.");

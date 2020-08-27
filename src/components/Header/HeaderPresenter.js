@@ -171,7 +171,7 @@ const HeaderPresneter = ({
           </Link>
         </div>
         <div className="header__column">
-          <Link to="/">
+          <Link to={`/user/${user.userData.name || "dummy"}`}>
             <div className="iconContainer">
               <FaUserAlt size={21} />
               <div className="iconTitle title06">마이</div>
