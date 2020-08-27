@@ -67,7 +67,9 @@ function Auth({
                     className="auth__loginInput "
                     placeholder="이메일을 입력해주세요."
                   ></Input>
-                  {errors.email && touched.email && <div>{errors.email}</div>}
+                  {errors.email && touched.email && (
+                    <div className="error">{errors.email}</div>
+                  )}
                   <Button
                     type="submit"
                     disabled={isSubmitting}
@@ -95,7 +97,7 @@ function Auth({
                     placeholder="이메일의 인증 문자를 입력해 주세요"
                   ></Input>
                   {errors.secret && touched.secret && (
-                    <div>{errors.secret}</div>
+                    <div className="error">{errors.secret}</div>
                   )}
                   <Button
                     type="submit"
@@ -121,7 +123,9 @@ function Auth({
                     onChange={handleChange}
                     onBlur={handleBlur}
                   ></Input>
-                  {errors.name && touched.name && <div>{errors.name}</div>}
+                  {errors.name && touched.name && (
+                    <div className="error">{errors.name}</div>
+                  )}
                   <Input
                     value={values.email}
                     onChange={handleChange}
@@ -131,7 +135,9 @@ function Auth({
                     id="email"
                     placeholder="이메일"
                   ></Input>
-                  {errors.email && touched.email && <div>{errors.email}</div>}
+                  {errors.email && touched.email && (
+                    <div className="error">{errors.email}</div>
+                  )}
                   <Input
                     value={values.firstName}
                     onChange={handleChange}

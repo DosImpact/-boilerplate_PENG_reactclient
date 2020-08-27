@@ -5,6 +5,10 @@ import { toast } from "react-toastify";
 import { Formik } from "formik";
 import * as Yup from "yup";
 
+import Button from "components/Button";
+import Input from "components/Input";
+import { Loader } from "components";
+
 import TextareaAutosize from "react-autosize-textarea";
 
 const DisplayState = (props) => (
@@ -26,103 +30,110 @@ function NewpostPresenter({ formik, createPost, _gotoHome }) {
     values,
     touched,
     errors,
-    dirty,
+    // dirty,
     isSubmitting,
     handleChange,
     handleBlur,
     handleSubmit,
-    handleReset,
+    // handleReset,
   } = formik;
   return (
     <OutterContainer>
       <InnerContainer>
-        <form onSubmit={handleSubmit}>
+        <div className="title title01">재능무역 등록</div>
+        <form className="form" onSubmit={handleSubmit}>
           <label className="form__label" htmlFor="title">
-            title
+            제목
           </label>
-          <input
+          {errors.title && touched.title && (
+            <div className="form__feedback error">{errors.title}</div>
+          )}
+          <Input
+            placeholder="제목을 작성해주세요"
             className="form__input"
             type="text"
             id="title"
             value={values.title}
             onChange={handleChange}
             onBlur={handleBlur}
-          ></input>
-          {errors.title && touched.title && (
-            <div className="form__feedback">{errors.title}</div>
-          )}
-
+          ></Input>
           <label className="form__label" htmlFor="location">
             location
           </label>
-          <input
+          {errors.location && touched.location && (
+            <div className="form__feedback error">{errors.location}</div>
+          )}
+          <Input
             className="form__input"
             type="text"
             id="location"
             value={values.location}
             onChange={handleChange}
             onBlur={handleBlur}
-          ></input>
-          {errors.location && touched.location && (
-            <div className="form__feedback">{errors.location}</div>
-          )}
+          ></Input>
 
           <label className="form__label" htmlFor="myTalent">
             myTalent
           </label>
-          <input
+          {errors.myTalent && touched.myTalent && (
+            <div className="form__feedback error">{errors.myTalent}</div>
+          )}
+          <Input
             className="form__input"
             type="text"
             id="myTalent"
             value={values.myTalent}
             onChange={handleChange}
             onBlur={handleBlur}
-          ></input>
-          {errors.myTalent && touched.myTalent && (
-            <div className="form__feedback">{errors.myTalent}</div>
-          )}
+          ></Input>
 
           <label className="form__label" htmlFor="youTalent">
             youTalent
           </label>
-          <input
+          {errors.youTalent && touched.youTalent && (
+            <div className="form__feedback error">{errors.youTalent}</div>
+          )}
+          <Input
             className="form__input"
             type="text"
             id="youTalent"
             value={values.youTalent}
             onChange={handleChange}
             onBlur={handleBlur}
-          ></input>
-          {errors.youTalent && touched.youTalent && (
-            <div className="form__feedback">{errors.youTalent}</div>
-          )}
+          ></Input>
 
           <label className="form__label" htmlFor="content">
             content
           </label>
-          <TextareaAutosize
+          {errors.content && touched.content && (
+            <div className="form__feedback error">{errors.content}</div>
+          )}
+          <Textarea
             className="form__input"
             type="text"
             id="content"
             value={values.content}
             onChange={handleChange}
             onBlur={handleBlur}
-          ></TextareaAutosize>
-          {errors.content && touched.content && (
-            <div className="form__feedback">{errors.content}</div>
-          )}
+          ></Textarea>
 
-          <button
+          {/* 
+          <Button
+            className="blueBG "
             type="button"
             onClick={handleReset}
             disabled={!dirty || isSubmitting}
           >
-            Reset
-          </button>
-          <button type="submit" disabled={isSubmitting}>
-            Submit
-          </button>
-          <DisplayState {...formik} />
+            초기화 하기
+          </Button> */}
+          <Button
+            className="submitButton blueBG"
+            type="submit"
+            disabled={isSubmitting}
+          >
+            제출 하기
+          </Button>
+          {/* <DisplayState {...formik} /> */}
         </form>
       </InnerContainer>
     </OutterContainer>
@@ -141,4 +152,45 @@ const InnerContainer = styled.div`
   max-width: 768px;
   margin: 0px auto;
   padding: 30px 20px 30px;
+
+  & .title {
+    margin-bottom: 20px;
+  }
+
+  & .form {
+    width: 100%;
+    min-height: 300px;
+    display: flex;
+    flex-flow: column nowrap;
+
+    & .form__label {
+      margin-bottom: 10px;
+    }
+    & .form__input {
+      margin-bottom: 30px;
+    }
+    & .form__feedback {
+      margin-bottom: 5px;
+    }
+
+    & .submitButton {
+      min-height: 50px;
+    }
+  }
+`;
+const Textarea = styled(TextareaAutosize)`
+  border: none;
+  width: 100%;
+  resize: none;
+  font-size: 14px;
+  &:focus {
+    outline: none;
+  }
+  border: 0;
+  border: ${(props) => props.theme.boxBorder};
+  border-radius: ${(props) => props.theme.borderRadius};
+  background-color: ${(props) => props.theme.bgColor};
+  min-height: 70px;
+  font-size: 12px;
+  padding: 15px;
 `;

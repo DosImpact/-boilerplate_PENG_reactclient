@@ -30,6 +30,7 @@ export default createGlobalStyle`
         border-radius:4px;
     }
 
+    /** typo grayphy */
     .title01{
         font-size: 18px;
         font-weight:800;
@@ -58,6 +59,19 @@ export default createGlobalStyle`
         font-weight:400;
         opacity:1;
     }
+    .TypoContent{
+        min-height: 50px;
+      word-break: break-all;
+      letter-spacing: 0px;
+      font-weight: 300;
+      line-height: 20px;
+    }
+
+    .error{
+        color:#ED4956;
+    }
+
+    /* font color */
     .black{
         color:#262626;
     }
@@ -70,6 +84,8 @@ export default createGlobalStyle`
     .grey{
         color:#FAFAFA;
     }
+
+    /**Background Color */
 
     .blueBG{
         background-color:#3C82FF;

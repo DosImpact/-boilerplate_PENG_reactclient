@@ -38,7 +38,7 @@ export default ({
         youtalent={youtalent}
       />
       <div className="DetailContainer">
-        <div className="content">{content}</div>
+        <div className="content TypoContent">{content}</div>
         <PostProfile
           className="footer"
           commentCount={commentCount}
@@ -86,10 +86,15 @@ const Wrapper = styled.div`
     justify-content: space-between;
     padding-bottom: 15px;
     & .content {
-      min-height: 50px;
+      /* min-height: 50px;
+      word-break: break-all;
+      letter-spacing: 0px;
+      font-weight: 300;
+      line-height: 20px; */
     }
 
     & .footer {
+      margin-top: 5px;
     }
   }
   & .commentContainer {
