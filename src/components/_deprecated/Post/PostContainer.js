@@ -29,18 +29,17 @@ const PostContainer = ({
     variables: { postId: id, text: comment.value },
   });
 
-  const slide = () => {
-    const totalFiles = files.length;
-    if (currentItem === totalFiles - 1) {
-      setTimeout(() => setCurrentItem(0), 3000);
-    } else {
-      setTimeout(() => setCurrentItem(currentItem + 1), 3000);
-    }
-  };
-
   useEffect(() => {
+    const slide = () => {
+      const totalFiles = files.length;
+      if (currentItem === totalFiles - 1) {
+        setTimeout(() => setCurrentItem(0), 3000);
+      } else {
+        setTimeout(() => setCurrentItem(currentItem + 1), 3000);
+      }
+    };
     slide();
-  }, [currentItem, slide]);
+  }, [currentItem, files]);
 
   const toggleLike = () => {
     toggleLikeMutation();

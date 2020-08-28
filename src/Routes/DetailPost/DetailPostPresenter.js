@@ -5,13 +5,7 @@ import Post from "components/Post";
 import Loader from "components/Loader";
 import Error from "components/Error";
 
-function DetailPostPresenter({
-  handleClickLike,
-  formik,
-  data,
-  loading,
-  error,
-}) {
+function DetailPostPresenter({ data, loading, error }) {
   console.log("DetailPostPresenter", data);
   return (
     <OutterContainer>

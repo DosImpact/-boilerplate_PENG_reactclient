@@ -1,29 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import { toast } from "react-toastify";
-
-import { Formik } from "formik";
-import * as Yup from "yup";
-
 import Button from "components/Button";
 import Input from "components/Input";
-import { Loader } from "components";
 
 import TextareaAutosize from "react-autosize-textarea";
-
-const DisplayState = (props) => (
-  <div>
-    <pre
-      style={{
-        background: "#f6f8fa",
-        fontSize: ".65rem",
-        padding: ".5rem",
-      }}
-    >
-      <strong>props</strong> = {JSON.stringify(props, null, 2)}
-    </pre>
-  </div>
-);
 
 function NewpostPresenter({ formik, createPost, _gotoHome }) {
   const {

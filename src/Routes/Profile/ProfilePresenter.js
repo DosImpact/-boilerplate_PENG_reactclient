@@ -35,7 +35,7 @@ export default ({ loading, data, handleLogOut, path, error }) => {
         followingCount,
         followersCount,
         postsCount,
-        posts,
+        // posts,
       },
     } = data;
     return (
@@ -235,10 +235,4 @@ const Selector = styled.div`
   & .selector__item:not(:last-child) {
     margin-right: 60px;
   }
-`;
-const Posts = styled.div`
-  display: grid;
-  grid-template-columns: repeat(4, 200px);
-  grid-template-rows: 200px;
-  grid-auto-rows: 200px;
 `;

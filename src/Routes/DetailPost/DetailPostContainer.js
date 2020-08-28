@@ -1,5 +1,5 @@
 import React from "react";
-import { useRouteMatch, useHistory } from "react-router-dom";
+import { useRouteMatch } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
@@ -14,7 +14,6 @@ Post 좋아요 기능
 */
 
 function DetailPostContainer() {
-  const history = useHistory();
   const {
     params: { id },
   } = useRouteMatch();
@@ -28,16 +27,6 @@ function DetailPostContainer() {
   //   e.target.preventDefault();
   //   console.log("submit");
   // };
-
-  // const handleSubmitComment = (e) => {
-  //   e.target.preventDefault();
-  // };
-  const handleClickLike = () => {};
-  const _handleReloadPage = () => {
-    history.push(`post/${id}`);
-    // window.location.reload();
-  };
-  // const handleClickSaved = ()=>{}
 
   const formik = useFormik({
     initialValues: { comment: "" },
@@ -54,7 +43,6 @@ function DetailPostContainer() {
 
   return (
     <DetailPostPresenter
-      handleClickLike={handleClickLike}
       formik={formik}
       data={data}
       loading={loading}

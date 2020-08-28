@@ -24,7 +24,7 @@ export default function (SpecificComponent, options, adminRoute = null) {
           props.history.push("/");
         }
       }
-    }, [user]);
+    }, [user, props.history]);
 
     return <SpecificComponent user={user} {...props} />;
   }

@@ -79,8 +79,7 @@ function Auth({
                     <span className="title01">로그인</span>
                   </Button>
                 </form>
-
-                {/* <SNSLogin /> */}
+                <SNSLogin />
               </div>
             )}
             {action === actionType.confirm && (
