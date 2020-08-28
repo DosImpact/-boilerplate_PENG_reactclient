@@ -1,7 +1,8 @@
 import { LOG_TYPES } from "./types";
 import axios from "axios";
+import config from "config";
 
-const BASE_URL = "http://localhost:4000/";
+const BASE_URL = config.SERVER_URI;
 
 export const logIn = (token) => {
   // console.log("redux action login token:", token);
