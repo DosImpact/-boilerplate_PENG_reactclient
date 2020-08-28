@@ -38,7 +38,8 @@ cache.writeQuery({
 });
 
 export const client = new ApolloClient({
-  uri: "http://localhost:4000/",
+  uri: "https://talenttrade01.herokuapp.com/",
+  // uri: "http://localhost:4000/",
   // uri: "http://133.186.241.220:7000/",
   cache,
   headers: {
