@@ -56,44 +56,41 @@ const Container = styled.div`
   ${(props) => (props.size === "sm" ? `height:200px;` : ``)};
   border-radius: 6px;
   padding: 30px;
-  border:${(props) => props.theme.boxBorder};
-  position:relative;
-  box-shadow:${(props) => props.theme.boxShadow};
+  border: ${(props) => props.theme.boxBorder};
+  position: relative;
+  box-shadow: ${(props) => props.theme.boxShadow};
   transition: all 0.2s ease-in-out;
   :hover {
-  /* background-color: ${(props) => props.theme.lightGreyColor}; */
+    /* background-color: ${(props) => props.theme.lightGreyColor}; */
     /* box-shadow:${(props) => props.theme.boxShadow}; */
   }
 
-  & .card__image{
-     position:absolute;
-     width: 500px;
-     height: 300px;
-     top:0px;
-     left:0px;
-     
-      & img {
-        height:100%;
-        width: 100%;
-        opacity:0.5;
-        border-radius: 6px;
-      }
-    
+  & .card__image {
+    position: absolute;
+    width: 500px;
+    height: 300px;
+    top: 0px;
+    left: 0px;
+
+    & img {
+      height: 100%;
+      width: 100%;
+      opacity: 0.5;
+      border-radius: 6px;
     }
+  }
   & .card__wrapper {
     width: 100%;
     height: 100%;
     display: flex;
-    flex-direction:column;
-    position:relative;
-
-
+    flex-direction: column;
+    position: relative;
   }
   & .card__header {
     display: flex;
     align-items: center;
     height: 40px;
- 
+
     & .card__column {
     }
 
@@ -106,25 +103,30 @@ const Container = styled.div`
   }
 
   & .card__content {
-    height:calc(100% - 40px);
+    height: calc(100% - 40px);
     & .content__ {
       display: flex;
+      flex-flow: row nowrap;
       justify-content: space-around;
       align-items: center;
       /* height:calc(100% - 60px); */
-        height:100%;
+      height: 100%;
+      text-align: center;
+      line-height: 30px;
     }
 
     & .content__01 {
+      width: 40%;
     }
 
     & .content__02 {
+      width: 40%;
       color: ${(props) => props.theme.blueColor};
     }
 
-    & .apply__Button{
-     flex-grow:1;
-     height:60px; 
+    & .apply__Button {
+      flex-grow: 1;
+      height: 60px;
     }
   }
 `;

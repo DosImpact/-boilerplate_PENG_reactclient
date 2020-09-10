@@ -25,12 +25,8 @@ function PostProfile({
   return (
     <Wrapper className={className}>
       <div className="column">
-        <div className="item">
-          <FaRegComment className="icon" />
-          <span className="count">{commentCount}</span>
-        </div>
         <div
-          className="item"
+          className="item "
           onClick={() => handleToggleLike()}
           style={{ cursor: "pointer" }}
         >
@@ -43,6 +39,11 @@ function PostProfile({
           <span className="count">{likeCount}</span>
         </div>
         <div className="item">
+          <FaRegComment className="icon" />
+          <span className="count">{commentCount}</span>
+        </div>
+
+        <div className="item">
           <FaRegBookmark className="icon" />
           <span className="count">0</span>
         </div>
@@ -51,7 +52,7 @@ function PostProfile({
         <div className="item">{createdAt.substr(0, 10)}</div>
         {loggedUserId === userId ? (
           <div
-            className="item"
+            className="item delbutton"
             style={{ cursor: "pointer" }}
             onClick={() => handleDeletePost()}
           >
@@ -79,12 +80,15 @@ const Wrapper = styled.div`
     align-items: flex-end;
   }
   & .item {
-    margin-left: 5px;
+    margin-right: 8px;
     & .icon {
       color: ${(props) => props.theme.blueColor};
-      margin-right: 1px;
+      margin-right: 3px;
     }
     & .count {
     }
+  }
+  & .delbutton {
+    color: ${(props) => props.theme.blueColor};
   }
 `;
