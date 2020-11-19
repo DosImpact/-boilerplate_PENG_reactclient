@@ -6,6 +6,8 @@ import Input from "components/Input";
 import styled from "styled-components";
 import { Loader } from "components";
 
+import config from "../../config";
+
 const SNSLogin = () => {
   return (
     <div className="auth__loginSNS">
@@ -18,8 +20,10 @@ const SNSLogin = () => {
         <span className="title01">페이스북으로 로그인</span>
       </Button>
       <Button className="auth__loginButton kakaoBG" type="submit">
-        <FaKaggle style={{ marginRight: 10, fontSize: 18 }} />
-        <span className="title01 black">카카오 계정 로그인</span>
+        <a href={`${config.SERVER_URI}auth/kakao`}>
+          <FaKaggle style={{ marginRight: 10, fontSize: 18 }} />
+          <span className="title01 black">카카오 계정 로그인</span>
+        </a>
       </Button>
     </div>
   );

@@ -14,6 +14,8 @@ import Test from "../Routes/Test";
 import Home from "../Routes/Home";
 import MyPost from "../Routes/MyPost/MyPost";
 
+import NotFound from "../Routes/NotFound";
+
 import auth from "Hooks/auth";
 
 // options
@@ -40,8 +42,8 @@ const LoggedInRoutes = () => (
 
     {/* temp Section */}
     <Route exact path="/feed" component={auth(Feed, true)}></Route>
-    <Route exact path="/explore" component={auth(Explore, true)} />
-    <Redirect from="*" to="/" />
+    <Route exact path="/error" component={auth(NotFound, null)} />
+    {/* <Redirect from="*" to="/" /> */}
   </Switch>
 );
 

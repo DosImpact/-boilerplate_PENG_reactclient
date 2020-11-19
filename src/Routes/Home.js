@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useQuery, gql } from "@apollo/client";
+import { useLocation, useHistory } from "react-router-dom";
 
 import Card from "components/Card/CardContainer";
 import Loader from "components/Loader";
@@ -23,14 +24,19 @@ const getAllPost = gql`
 `;
 
 function Home(props) {
+  const location = useLocation();
+  const history = useHistory();
   const { data, loading, error } = useQuery(getAllPost, {
     // fetchPolicy: "network-only",
   });
   // console.log("Home rendering", data, loading, error);
   if (error) {
-    props.history.push("/");
+    props.history.push("/error");
   }
-
+  console.log(location, history);
+  const queryString = new URLSearchParams(location.search);
+  console.log("profileID : ", queryString.get("profileID"));
+  console.log("accessToken : ", queryString.get("accessToken"));
   return (
     <Container className="Home__outerContainer">
       <div className="Home__innerContainer">
