@@ -1,12 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import Feed from "../Routes/Feed";
 import Auth from "Routes/Authen/AuthContainer";
 
 import DetailPost from "Routes/DetailPost/DetailPostContainer";
 import Newpost from "Routes/Newpost/index";
-import Explore from "../Routes/Explore";
+// import Explore from "../Routes/Explore";
 // import Search from "../Routes/Search";
 import SearchPost from "Routes/SearchPost/SearchPost";
 import Profile from "../Routes/Profile";
